@@ -46,8 +46,6 @@ public class DBConnection implements AutoCloseable {
         }
     }
 
-    // sql connection processes here...
-
     @Override
     public void close() throws Exception {
         p.close();

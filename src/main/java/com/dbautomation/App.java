@@ -1,18 +1,14 @@
 package com.dbautomation;
 
-import com.dbautomation.database.DBConnection;
+import picocli.CommandLine;
 
-/**
- * Hello world!
- *
- */
 public class App {
+    // @Spec
+    // CommandSpec spec;
+
     public static void main(String[] args) {
-        try (DBConnection connection = new DBConnection()) {
-            System.out.println("Connected to database");
-        } catch (Exception e) {
-            System.out.println("Error unable to connect to database");
-            e.printStackTrace();
-        }
+
+        CommandLine.run(new MainCommand(), args);
+
     }
 }

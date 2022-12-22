@@ -1,0 +1,9 @@
+Find out how to initialize grid. OR maybe have no grid at all. 
+
+
+-columns 10 
+-rows 10
+
+
+Account for primary key
+
