@@ -1,9 +1,79 @@
+TODO:
+    Custom column
+
+    Account for user input file format errors:
+        not csv
+        first item not a number
+        number not matching the number of values in the file
+
 
 Changes made:
-    addText()
-    addName()
-    Migration from 3.0 to 4.7
-    subcommandsRepeateable added -> Allows multiple siblings commands to be executed. 
+    
 
-Account for primary key -> Make requirement that database must be set to autofill keys
+
+
+
+
+------------
+* : Indicates current column working on.
+
+Colums: 
+    Name 
+    Text: Non-numeric random string of characters is generated. Users can specify max or minimum length.  Default min is 4 and Default max is 200. 
+        -mnLen: minimum length (optional)
+        -mxLen: max length (optional)
+
+    *Custom Col: Col values are selected(can be random with option) from user directed file. If file is not found then the program quits. 
+        -o : Select values in order. Not that number of items must match number of rows. 
+        Default behavior: Values are selected randomly. 
+        
+    Number: Using options users can specify whether they want an int or decimal. 
+        -dec  
+        -currency -> default of false
+        -max -> default 100
+        -min -> default 0
+
+        default behavior: an integer > 0 is provided
+
+    email:
+        -domains [ comma separated list of acceptable domains ]  *Note perform error checking for valid user input domains
+        -maxLength
+        -minLength
+
+        default behavior: outputs emails containing letters, numbers, underscores, and dots. At least one letter. From domains: gmail.com, outlook.com and yahoo.com
+        
+    Date:
+        -maxYear 
+        -minYear
+        -singleYear
+
+        -maxDay
+        -minDay
+        -singleDay 
+
+        -maxMonth
+        -minMonth
+        -singleMonth
+        
+
+        default behavior: Gives a random date from 1/1/1990
+
+        *single_ and max_/min_ cannot be mixed. Specify bad usage if so. 
+    Hash:
+        -Base64
+        -algo1
+        -algo2
+        ....
+        
+
+
+    
+Notes:
+     
+
+    Account for primary key -> Make requirement that database must be set to autofill keys
     sql statement might look like -. INsert (?,?,?,?) values (*nokey,* value1, value2,... )
+
+
+    User input files must follow format. 
+    comma separated values with the first value being the number of items in the file.

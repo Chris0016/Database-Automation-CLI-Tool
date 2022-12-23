@@ -42,8 +42,7 @@ public class MainCommand implements Callable<Integer> {
             @Option(names = { "-mnLen",
                     "minLength" }, arity = "1", defaultValue = ModelConfigs.TEXT_LOWERBOUND_s) int minLength,
             @Option(names = { "-mxLen",
-                    "--maxLength" }, arity = "1", defaultValue = ModelConfigs.TEXT_UPPERBOUND_s) int maxLength,
-            @Option(names = { "-src", "--source" }, arity = "1") String inputDir) {
+                    "--maxLength" }, arity = "1", defaultValue = ModelConfigs.TEXT_UPPERBOUND_s) int maxLength) {
 
         try {
 
