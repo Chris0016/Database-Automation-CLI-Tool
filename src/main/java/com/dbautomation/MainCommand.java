@@ -1,49 +1,55 @@
 package com.dbautomation;
 
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 import com.dbautomation.model.ModelConfigs;
+import com.dbautomation.model.Name;
 import com.dbautomation.model.Text;
 
+import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
+import picocli.CommandLine.Parameters;
 
-@Command(name = "main", description = "Says Hello")
-public class MainCommand implements Runnable {
+@Command(name = "main", description = "DB Insertion automation", subcommandsRepeatable = true)
+public class MainCommand implements Callable<Integer> {
 
-    private ArrayList<ArrayList<Object>> columns;
-    private int currrentColumn = 0;
+    private ArrayList<Object> columns = new ArrayList<>();
+
+    // @Option(names = { "-table", "--table" }, arity = "1", required = true)
+    // private String tableName;
+
+    // @Option(names = { "-rows", "--rows" }, arity = "1", required = true)
+    // private int numRows;
 
     @Command(name = "name")
-    public Integer addName() {
-        System.out.println("Name()");
-        return 0;
+    public void addName() {
+        try {
+            columns.add(new Name());
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
+
     }
+
+    // ... More comands here
 
     @Command(name = "text")
     public void addText(
             @Option(names = { "-mnLen",
-                    "minLength" }, arity = "1", defaultValue = ModelConfigs.TEXT_LOWERBOUNDs_s) int minLength,
+                    "minLength" }, arity = "1", defaultValue = ModelConfigs.TEXT_LOWERBOUND_s) int minLength,
             @Option(names = { "-mxLen",
                     "--maxLength" }, arity = "1", defaultValue = ModelConfigs.TEXT_UPPERBOUND_s) int maxLength,
             @Option(names = { "-src", "--source" }, arity = "1") String inputDir) {
 
         try {
-            Text txt = new Text(minLength, maxLength);
 
-            // TEMPORARY GRID INITIALIZATION
-            for (int i = 0; i < 5; i++) {
-                columns.add(new ArrayList<Object>());
-            }
-            // TEMPORARY GRID INITIALIZATION
-
-            for (int i = 0; i < 5; i++) {
-                columns.get(currrentColumn).add(txt.generateValue());
-            }
+            columns.add(new Text(minLength, maxLength));
 
             printColumns();
-
-            // currrentColumn++;
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -54,16 +60,15 @@ public class MainCommand implements Runnable {
     }
 
     private void printColumns() {
-        for (ArrayList<Object> col : columns) {
-            for (Object obj : col)
-                System.out.print(obj.toString() + "\n");
-            System.out.println("___");
-        }
+        for (Object obj : columns)
+            System.out.println(obj.getClass().toString() + "\n");
 
     }
 
     @Override
-    public void run() {
-        System.out.println("run()");
+    public Integer call() throws Exception {
+
+        return 0;
     }
+
 }

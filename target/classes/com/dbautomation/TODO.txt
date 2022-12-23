@@ -1,9 +1,9 @@
-Find out how to initialize grid. OR maybe have no grid at all. 
 
+Changes made:
+    addText()
+    addName()
+    Migration from 3.0 to 4.7
+    subcommandsRepeateable added -> Allows multiple siblings commands to be executed. 
 
--columns 10 
--rows 10
-
-
-Account for primary key
-
+Account for primary key -> Make requirement that database must be set to autofill keys
+    sql statement might look like -. INsert (?,?,?,?) values (*nokey,* value1, value2,... )

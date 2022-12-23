@@ -12,8 +12,6 @@ public class Text implements StringModelInterface {
     private int minLength;
     private int maxLength;
 
-    private Scanner reader;
-
     public Text(int minLength, int maxLength) throws IllegalArgumentException {
 
         // Throws illegal arguement exception if a test is failed.
@@ -24,13 +22,8 @@ public class Text implements StringModelInterface {
         this.maxLength = maxLength;
     }
 
-    public Text(String inputDir) throws FileNotFoundException {
-        reader = new Scanner(new File(inputDir));
-    }
-
+    @Override
     public String generateValue() {
-        if (reader != null) // Select random text from given file
-            return "Random word from file"; // TODO
 
         int length = (int) (Math.random() * (maxLength - minLength + 1)) + minLength;
         return RandomStringUtils.random(length, true, false);

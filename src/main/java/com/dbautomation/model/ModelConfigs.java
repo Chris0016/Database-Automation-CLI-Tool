@@ -9,10 +9,10 @@ public class ModelConfigs {
     // On the other hand just having strings and then converting to int each time
     // would be inefficient
 
-    public static final int TEXT_UPPERBOUND = 200;
-    public static final int TEXT_LOWERBOUND = 4;
+    public static final Integer TEXT_UPPERBOUND = 200;
+    public static final Integer TEXT_LOWERBOUND = 4;
 
     public static final String TEXT_UPPERBOUND_s = "200";
-    public static final String TEXT_LOWERBOUNDs_s = "4";
+    public static final String TEXT_LOWERBOUND_s = "4";
 
 }
