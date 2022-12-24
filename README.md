@@ -18,15 +18,5 @@ Most often, the data across different tables is the same such as name, email, ph
 
 ## Version 1.1.0:
 
-Currently there are some issues or things that can be done better in the program.
-For instance:
--Some column values cannot be duplicate so selecting at random will inevitably cause a collision. Once that collision occurs the program comes to a halt.
-To solve this, add error handling if mySQL gives this specific type of error and then run again. Reduce the pkValue in the function when the error occurs.
-
-    -Instead of having to manually update the current pkValue in the primary function, automatically retrieve the highest  pkValue on a given table. -> Maybe a custom script?
-
-    -Some pk values are not numbers(or even increment sequentially). Hence, having the
-    option to treat the pkValues columns as an entity of the users choice is also a good idea.
-
 <br />
 <br />
