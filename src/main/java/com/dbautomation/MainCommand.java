@@ -35,8 +35,6 @@ public class MainCommand implements Callable<Integer> {
 
     }
 
-    // ... More comands here
-
     @Command(name = "text")
     public void addText(
             @Option(names = { "-mnLen",
@@ -55,6 +53,16 @@ public class MainCommand implements Callable<Integer> {
             System.out.println("For help type: \'main -help\'");
             System.exit(1); // Error Invalid Input
         }
+
+    }
+
+    // ... More comands here
+
+    @Command(name = "custom")
+    public void addCustomColumn(
+            @Option(names = { "-o", "--order" }, arity = "1") boolean haveOrder,
+            @Option(names = { "-src", "--source" }, arity = "1", required = true) String inputDir) {
+        // TODO make it an optionless flag and only check its presence
 
     }
 
