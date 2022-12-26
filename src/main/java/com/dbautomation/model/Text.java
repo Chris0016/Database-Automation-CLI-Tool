@@ -1,9 +1,5 @@
 package com.dbautomation.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import org.apache.commons.lang3.RandomStringUtils;
 
 import com.dbautomation.ConstraintValidator;

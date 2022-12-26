@@ -2,6 +2,7 @@ package com.dbautomation.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Custom { // Implements?
@@ -13,35 +14,28 @@ public class Custom { // Implements?
 
     private boolean isLargeFile; // Implies that first item in file is the number of items in the file.
 
-    private boolean fetchInOrder = false;
+    private boolean fetchInOrder;
     private int currentItemIndex; // If traversing in order then necessary to keep count of last position.
 
-    public Custom(String inputDir, boolean isLargeFile) throws FileNotFoundException {
+    public Custom(String inputDir, boolean isLargeFile, boolean fetchInOrder) throws FileNotFoundException {
         try {
             inputFile = new File(inputDir);
             reader = new Scanner(inputFile);
             reader.useDelimiter(DELIMETER);
 
             this.isLargeFile = isLargeFile;
+            this.fetchInOrder = fetchInOrder;
 
             findNumberofItems();
 
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException(
-                    "Error the input file provided cannot be found. Please double check path given for custom. ");
+                    "Error the input file: \'" + inputDir +  "\' \nCannot be found.");
         }
 
     }
 
-    // Will start from beginning. Be WARRY NOT TO CALL MID PROCESS AS THE ITEM INDEX
-    // IS RESET.
-    public void fetchInOrder() {
-
-        this.fetchInOrder = true;
-        if (isLargeFile)
-            currentItemIndex = 1; // We expect the first item to be metadata(number of actual values).
-    }
-
+    
     private void findNumberofItems() throws FileNotFoundException {
 
         if (isLargeFile) {
@@ -90,7 +84,7 @@ public class Custom { // Implements?
     // }
     // ADD ME TO CALLER
 
-    public String generateValue() throws FileNotFoundException {
+    public String generateValue() throws FileNotFoundException, NoSuchElementException {
         // Handle exception in caller for isLargeFile where number of items given does
         // not match the actual number of items in file(numItemsGiven > numItems).
         // Therefore a NoSuchElementException occurrs while iterating through the file.

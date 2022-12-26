@@ -1,16 +1,17 @@
 package com.dbautomation;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.concurrent.Callable;
 
+import com.dbautomation.model.Custom;
 import com.dbautomation.model.ModelConfigs;
 import com.dbautomation.model.Name;
 import com.dbautomation.model.Text;
 
-import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
 
 @Command(name = "main", description = "DB Insertion automation", subcommandsRepeatable = true)
 public class MainCommand implements Callable<Integer> {
@@ -27,6 +28,7 @@ public class MainCommand implements Callable<Integer> {
     public void addName() {
         try {
             columns.add(new Name());
+            System.out.println(new Name().generateValue());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -60,10 +62,30 @@ public class MainCommand implements Callable<Integer> {
 
     @Command(name = "custom")
     public void addCustomColumn(
-            @Option(names = { "-o", "--order" }, arity = "1") boolean haveOrder,
-            @Option(names = { "-src", "--source" }, arity = "1", required = true) String inputDir) {
-        // TODO make it an optionless flag and only check its presence
+        @Option(names = { "-src", "--source" }, arity = "1", required = true) String inputDir,
+        @Option(names = {"-isLarge", "--isLargeFile" }, arity = "0") boolean isLargeFile, 
+        @Option(names = { "-o", "--order" }, arity = "0") boolean fetchInOrder){
+            
+           
+            try {
+                //columns.add ( new Custom(inputDir, fetchInOrder));
+                Custom cs = new Custom(inputDir, isLargeFile, fetchInOrder);
 
+                System.out.println("Fetching in order: " + fetchInOrder);
+
+                for(int i = 0; i < 5; i++){
+                    System.out.println(cs.generateValue());
+                }
+
+            } catch (FileNotFoundException e){
+                System.out.println( e.getMessage());
+                System.exit(1);
+            } catch (NoSuchElementException e) {
+                System.out.println("Error in custom file: " + inputDir 
+                    + "\n Tried to retreived an element that does not exist at the end of the ile." 
+                    + "\n To fix error: MAKE SURE NUMBER OF ITEMS PROVIDED MATCHES NUMBER OF ACTUAL ITEMS IN FILE");
+                System.exit(1);
+                }
     }
 
     private void printColumns() {

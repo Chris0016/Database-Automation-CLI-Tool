@@ -1,14 +1,14 @@
 TODO:
+    
+
+
+Changes made:
     Custom column
 
     Account for user input file format errors:
         not csv
         first item not a number
-        number not matching the number of values in the file
-
-
-Changes made:
-    
+        number not matching the number of values in the file    
 
 
 
