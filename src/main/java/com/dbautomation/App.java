@@ -1,7 +1,5 @@
 package com.dbautomation;
 
-import com.dbautomation.model.Custom;
-
 import picocli.CommandLine;
 
 public class App {
@@ -12,21 +10,10 @@ public class App {
 
         boolean isLargeFile = file.equals("largeUserFile.txt");
         boolean fetchInOrder = false;
-// 
-        // try {
-            // Custom cs = new Custom(filePath, isLargeFile);
-// 
-            // if (fetchInOrder)
-                // cs.fetchInOrder();
-// 
-            // System.out.println("Val fetched: " + cs.generateValue());
-// 
-        // } catch (Exception e) {
-            // e.printStackTrace();
-        // }
 
-        String[] myArgs = { "name", "custom", "-src", filePath, "-isLarge", "-o"};
 
+        String[] myArgs = { "number",  "-curr", "$", "-max", "10", "-min", "-20"};
+     
         int exitCode = new CommandLine(new MainCommand()).execute(myArgs);
         System.exit(exitCode);
 

@@ -10,9 +10,10 @@ public class ModelConfigs {
     // would be inefficient
 
     public static final Integer TEXT_UPPERBOUND = 200;
-    public static final Integer TEXT_LOWERBOUND = 4;
+    public static final Integer TEXT_LOWERBOUND = 1;
 
-    public static final String TEXT_UPPERBOUND_s = "200";
-    public static final String TEXT_LOWERBOUND_s = "4";
+    public static final String UPPER_BOUND_STRING = "200";
+    public static final String LOWER_BOUND_STRING = "1";
+
 
 }

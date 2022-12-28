@@ -9,13 +9,11 @@ public class Name implements StringModelInterface {
     private Scanner reader;
 
     private final String NAME_FILE_PATH = "src/main/java/com/dbautomation/resources/names.txt";
-    private final String DELIMETER = ",";
     private int totalNames;
 
     public Name() throws FileNotFoundException {
         try {
             reader = new Scanner(new File(NAME_FILE_PATH));
-            reader.useDelimiter(DELIMETER);
             setTotalNames();
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException(
@@ -25,7 +23,7 @@ public class Name implements StringModelInterface {
     }
 
     private void setTotalNames() {
-        totalNames = Integer.parseInt(reader.next());
+        totalNames = Integer.parseInt(reader.nextLine());
     }
 
     // Generic method to get a radom word from file
@@ -38,10 +36,10 @@ public class Name implements StringModelInterface {
 
         int index = (int) (Math.random() * totalNames);
         for (int i = 0; i < index; i++) {
-            reader.next();
+            reader.nextLine();
         }
-        String choosenName = reader.next().trim(); // .trim() to remove newline character before it
 
+        String choosenName = reader.nextLine(); 
         reader.close();
 
         return choosenName;
@@ -50,8 +48,7 @@ public class Name implements StringModelInterface {
     private void resetScanner() throws FileNotFoundException {
 
         reader = new Scanner(new File(NAME_FILE_PATH));
-        reader.useDelimiter(DELIMETER);
-        reader.next(); // Shift one item. First Item in file will be number of names within the file.
+        reader.nextLine(); // Shift one item. First Item in file will be number of names within the file.
 
     }
 

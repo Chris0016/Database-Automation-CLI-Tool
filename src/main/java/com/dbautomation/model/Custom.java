@@ -5,11 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+
 public class Custom { // Implements?
 
     private File inputFile;
     private Scanner reader;
-    private final String DELIMETER = ",";
     private int numberOfItems;
 
     private boolean isLargeFile; // Implies that first item in file is the number of items in the file.
@@ -21,68 +21,62 @@ public class Custom { // Implements?
         try {
             inputFile = new File(inputDir);
             reader = new Scanner(inputFile);
-            reader.useDelimiter(DELIMETER);
 
             this.isLargeFile = isLargeFile;
             this.fetchInOrder = fetchInOrder;
 
             findNumberofItems();
+            System.out.println("Num Items: " + numberOfItems);
+            System.out.println("Is large: " + isLargeFile);
 
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException(
                     "Error the input file: \'" + inputDir +  "\' \nCannot be found.");
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(
+                "Error in file: \'" + inputDir + "\' Expected first item to be a number with flag -isLarge"
+            );
         }
 
     }
 
     
-    private void findNumberofItems() throws FileNotFoundException {
+    private void findNumberofItems() throws FileNotFoundException, NumberFormatException {
 
         if (isLargeFile) {
 
-            // String givenVal = reader.next();
-            // System.out.println("Given number of values: " + givenVal); // Maybe needs a
-            // .trim() for new line characters
-            reader = new Scanner(inputFile);
-            reader.useDelimiter(DELIMETER);
+            //String givenVal = reader.next();
+            // System.out.println("Given number of values: " + givenVal);
 
-            numberOfItems = Integer.parseInt(reader.next()); // First value must be a number
+            reader = new Scanner(inputFile);
+
+            numberOfItems = Integer.parseInt(reader.nextLine()); // First value must be a number
             reader.close();
             return;
         }
 
         // Find the number of items in the file.
-        resetScanner();
+        reader.reset();
 
         while (reader.hasNext()) {
             numberOfItems++;
-            reader.next();
+            reader.nextLine();
         }
 
-        System.out.println(inputFile.getName() + ": Total items Found: " + numberOfItems);
+        //System.out.println(inputFile.getName() + ": Total items Found: " + numberOfItems);
         reader.close();
 
     }
 
     private void resetScanner() throws FileNotFoundException {
         reader = new Scanner(inputFile);
-        reader.useDelimiter(DELIMETER);
         if (isLargeFile)
-            reader.next(); // First item is expected to be the number of items in the file.
-
+            reader.nextLine(); //Skip first item. Is metadata. 
+        
+        
     }
 
-    // ADD ME TO CALLER
-    // try {
-    // } catch (NoSuchElementException e) {
-    // throw new NoSuchElementException("Error in custom file: " +
-    // inputFile.getName()
-    // + "\n Tried to retreived an element that does not exist at the end of the
-    // file."
-    // + "\n To fix error: MAKE SURE NUMBER OF ITEMS PROVIDED MATCHES NUMBER OF
-    // ACTUAL ITEMS IN FILE");
-    // }
-    // ADD ME TO CALLER
+
 
     public String generateValue() throws FileNotFoundException, NoSuchElementException {
         // Handle exception in caller for isLargeFile where number of items given does
@@ -95,9 +89,10 @@ public class Custom { // Implements?
         if (fetchInOrder) {
 
             for (int i = 0; i < currentItemIndex; i++) {
-                reader.next();
+                reader.nextLine();
             }
-            itemToGive = reader.next();
+
+            itemToGive = reader.nextLine();
             reader.close();
             currentItemIndex++;
             return itemToGive;
@@ -105,23 +100,27 @@ public class Custom { // Implements?
 
         // Return random item from file
 
+
         // item is fetched zero-index based,do not add 1 to call and save .next in a
         // variable
-        int itemIdx = (int) (Math.random() * (numberOfItems + 1));
+        int itemIdx = (int) (Math.random() * (numberOfItems));
 
-        // Start from the second item if its a large file.
-        // Item at zero-th idx is metadata
-        // ...)? 1 : 0; however more readeable with variable names.
-        itemIdx = (isLargeFile && itemIdx == 0) ? itemIdx++ : itemIdx;
+ 
+        //System.out.println("Item idx: " + itemIdx);
 
-        for (int i = 0; i < itemIdx - 1; i++) {
-            reader.next();
+        for (int i = 0; i < itemIdx ; i++) {
+            reader.nextLine();
         }
 
-        itemToGive = reader.next();
+        itemToGive = reader.nextLine();
         reader.close();
 
         return itemToGive;
+    }
+
+
+    public int getTotalItems() {
+        return numberOfItems;
     }
 
 }

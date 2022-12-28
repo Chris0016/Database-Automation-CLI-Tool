@@ -1,5 +1,5 @@
-Chris,
-Hello,
-word,
-john, 
-BLUE,
+Chris
+Hello
+word
+john 
+BLUE

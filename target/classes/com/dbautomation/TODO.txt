@@ -1,15 +1,12 @@
 TODO:
-    
+    Move global model config varibles to .properties file    
 
 
 Changes made:
-    Custom column
+       Custom Col genVal() fixed. 
+       Bug: Not retrieving the correct items when give -isLargeFlag.
 
-    Account for user input file format errors:
-        not csv
-        first item not a number
-        number not matching the number of values in the file    
-
+    Number Col Complete
 
 
 
@@ -23,11 +20,11 @@ Colums:
         -mnLen: minimum length (optional)
         -mxLen: max length (optional)
 
-    *Custom Col: Col values are selected(can be random with option) from user directed file. If file is not found then the program quits. 
+    Custom Col: Col values are selected(can be random with option) from user directed file. If file is not found then the program quits. 
         -o : Select values in order. Not that number of items must match number of rows. 
         Default behavior: Values are selected randomly. 
         
-    Number: Using options users can specify whether they want an int or decimal. 
+    *Number: Using options users can specify whether they want an int or decimal. 
         -dec  
         -currency -> default of false
         -max -> default 100

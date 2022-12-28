@@ -1,6 +1,6 @@
-5,
-Chris,
-Hello,
-word,
-john, 
-BLUE,
+5
+Chris
+Hello
+word
+john 
+BLUE
