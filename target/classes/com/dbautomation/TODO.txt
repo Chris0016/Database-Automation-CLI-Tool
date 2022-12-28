@@ -1,9 +1,13 @@
 TODO:
-    Move global model config varibles to .properties file    
-
+   
 
 Changes made:
-   
+    Move global model config varibles to .properties file. -> Disregard. Much simpler architecture w/o it and is also not a necessity.    
+    Constraint validator on Number col.
+    Polishing of Number col:
+        Removed unecessary constructors. 
+        Arguement validation. 
+        Min is not greater than Max. 
 
 
 

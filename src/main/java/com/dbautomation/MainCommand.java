@@ -129,7 +129,7 @@ public class MainCommand implements Callable<Integer> {
         @Option(names = { "-max", "--maximum" }, arity = "1", defaultValue = ModelConfigs.UPPER_BOUND_STRING) double max, 
         @Option(names = {"-min", "--minimum"}, arity = "1", defaultValue = ModelConfigs.LOWER_BOUND_STRING) double min 
     ){
-        columns.add(new NumberModel(isDecimal, currency, max, min));
+        columns.add(new NumberModel( max, min, isDecimal, currency));
 
        
     }
