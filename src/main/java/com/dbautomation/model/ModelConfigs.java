@@ -16,4 +16,8 @@ public class ModelConfigs {
     public static final String LOWER_BOUND_STRING = "1";
 
 
+    public static final String MAX_EMAIL_LENGTH = "20";
+    public static final String MIN_EMAIL_LENGTH = "5";
+
+
 }

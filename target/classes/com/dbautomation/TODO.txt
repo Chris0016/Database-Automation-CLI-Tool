@@ -3,11 +3,7 @@ TODO:
 
 
 Changes made:
-       Custom Col genVal() fixed. 
-       Bug: Not retrieving the correct items when give -isLargeFlag.
-
-    Number Col Complete
-
+   
 
 
 
@@ -24,7 +20,7 @@ Colums:
         -o : Select values in order. Not that number of items must match number of rows. 
         Default behavior: Values are selected randomly. 
         
-    *Number: Using options users can specify whether they want an int or decimal. 
+    Number: Using options users can specify whether they want an int or decimal. 
         -dec  
         -currency -> default of false
         -max -> default 100
@@ -32,7 +28,7 @@ Colums:
 
         default behavior: an integer > 0 is provided
 
-    email:
+    *email:
         -domains [ comma separated list of acceptable domains ]  *Note perform error checking for valid user input domains
         -maxLength
         -minLength

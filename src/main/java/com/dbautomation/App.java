@@ -12,7 +12,7 @@ public class App {
         boolean fetchInOrder = false;
 
 
-        String[] myArgs = { "number",  "-curr", "$", "-max", "10", "-min", "-20"};
+        String[] myArgs = { "email", "-domains", "blanco.com"};
      
         int exitCode = new CommandLine(new MainCommand()).execute(myArgs);
         System.exit(exitCode);

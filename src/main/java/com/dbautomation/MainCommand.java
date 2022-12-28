@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.concurrent.Callable;
 
 import com.dbautomation.model.Custom;
+import com.dbautomation.model.Email;
 import com.dbautomation.model.ModelConfigs;
 import com.dbautomation.model.Name;
 import com.dbautomation.model.NumberModel;
@@ -130,12 +131,58 @@ public class MainCommand implements Callable<Integer> {
     ){
         columns.add(new NumberModel(isDecimal, currency, max, min));
 
-        // NumberModel nm = new NumberModel(isDecimal, currency, max, min);
-
-        // for (int i = 0; i < 5; i++) {
-        //     System.out.println("Number generated: " + nm.generateValue());
-        // }
        
+    }
+    
+    /**
+     * 
+     * @param domains
+     * @param maxLen
+     * @param minLen
+     * 
+     * email:
+     * -domains <space separated list of acceptable domains> max is 4 
+     * -maxLength default is 20
+     * -minLength default is 5
+     *      Note that max length and minlength only count for every character before the @ symbol.
+     * 
+     * default behavior: outputs emails containing letters and numbers. At least one letter. 
+     * From domains: gmail.com, outlook.com and yahoo.com
+     * 
+     * Note: There is no error checking on user inputted domains. Since an expected usage of this program may be to test a
+     * database against invalid domains. 
+     * 
+     */
+    @Command(name = "email")
+    public void addEmail(
+        @Option(names = {"-domains", "--domains"}, arity = "1...4") String[] domains, 
+        @Option(names = {"-maxLen", "--maxLength"}, arity = "1", defaultValue = ModelConfigs.MAX_EMAIL_LENGTH) int maxLen,
+        @Option(names = {"-minLen", "--minLength"}, arity = "1", defaultValue = ModelConfigs.MIN_EMAIL_LENGTH) int minLen
+    ){
+        try {
+            
+            if (domains == null)
+                columns.add(new Email(maxLen, minLen));
+            else
+                columns.add(new Email(domains, maxLen, minLen));
+
+            // //Testing:
+            // Email e;
+            // if (domains == null)
+            //     e = new Email(maxLen, minLen);
+            // else
+            //     e = new Email(domains, maxLen, minLen);
+
+            // for (int i = 0; i < 5; i++) {
+            //     System.out.println("Value generated: " + e.generateValue());
+            // }   
+
+        } catch (Exception e){
+            System.out.println("Error:" + e.getMessage());
+            System.exit(1);
+        }
+       
+
     }
 
     private void printColumns() {
