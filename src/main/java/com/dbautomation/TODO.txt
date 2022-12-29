@@ -1,15 +1,14 @@
 TODO:
-   
+    Remove ModelConfig file instead have the default values within the Main Command Class. 
 
 Changes made:
-    Move global model config varibles to .properties file. -> Disregard. Much simpler architecture w/o it and is also not a necessity.    
-    Constraint validator on Number col.
-    Polishing of Number col:
-        Removed unecessary constructors. 
-        Arguement validation. 
-        Min is not greater than Max. 
+     Date:
+        -from Start date 
+        -to End date
+        
+        default behavior: Gives a random date from 1/1/1990 to current date.    
 
-
+    
 
 ------------
 * : Indicates current column working on.
@@ -32,30 +31,20 @@ Colums:
 
         default behavior: an integer > 0 is provided
 
-    *email:
+    email:
         -domains [ comma separated list of acceptable domains ]  *Note perform error checking for valid user input domains
         -maxLength
         -minLength
 
         default behavior: outputs emails containing letters, numbers, underscores, and dots. At least one letter. From domains: gmail.com, outlook.com and yahoo.com
         
-    Date:
-        -maxYear 
-        -minYear
-        -singleYear
-
-        -maxDay
-        -minDay
-        -singleDay 
-
-        -maxMonth
-        -minMonth
-        -singleMonth
+    *Date:
+        -from Start date 
+        -to End date
         
 
-        default behavior: Gives a random date from 1/1/1990
+        default behavior: Gives a random date from 1/1/1990 to current date.
 
-        *single_ and max_/min_ cannot be mixed. Specify bad usage if so. 
     Hash:
         -Base64
         -algo1
@@ -74,3 +63,6 @@ Notes:
 
     User input files must follow format. 
     comma separated values with the first value being the number of items in the file.
+
+    Give examples of usage in documentation: 
+    Single Day -> Just use the custom col like -> custom -src dateFile. 

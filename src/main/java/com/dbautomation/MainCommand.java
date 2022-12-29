@@ -1,11 +1,19 @@
 package com.dbautomation;
 
 import java.io.FileNotFoundException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Month;
+import java.time.Year;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.concurrent.Callable;
 
+import org.apache.commons.lang3.ObjectUtils.Null;
+
 import com.dbautomation.model.Custom;
+import com.dbautomation.model.DateCol;
 import com.dbautomation.model.Email;
 import com.dbautomation.model.ModelConfigs;
 import com.dbautomation.model.Name;
@@ -22,6 +30,9 @@ public class MainCommand implements Callable<Integer> {
      
 
     private ArrayList<Object> columns = new ArrayList<>();
+    private final String DATE_FORMAT = "MM/dd/yyyy";
+    SimpleDateFormat formatter = new SimpleDateFormat( DATE_FORMAT);
+
 
 
     // @Option(names = { "-table", "--table" }, arity = "1", required = true)
@@ -183,6 +194,56 @@ public class MainCommand implements Callable<Integer> {
         }
        
 
+    }
+
+ 
+
+    /**
+     * 
+     * @param startDate
+     * @param endDate
+     * 
+     *  Date:
+     *   -from   Start date 
+     *   -to     End date
+     *   
+     *   default behavior: Gives a random date from 1/1/1990 to current date.    
+     *   
+     */
+    @Command(name = "date")
+    public void addEmail(
+        @Option(names = {"-from", "--from"}, arity = "1") String startDate,
+        @Option(names = {"-to", "--to"}, arity = "1") String endDate
+    ){
+       
+        try {
+
+            if (startDate != null && endDate != null )
+                columns.add(new DateCol(formatter.parse(startDate), formatter.parse(endDate)));
+                
+            else 
+                if (startDate == null)
+                    columns.add(new DateCol(null, formatter.parse(endDate)));
+                else    
+                    columns.add(new DateCol(formatter.parse(startDate), null));   
+            
+
+            // DateCol dc = new DateCol(formatter.parse(startDate), formatter.parse(endDate));
+            DateCol dc = (DateCol)columns.get(columns.size() - 1);
+            System.out.println( dc.generateValue());
+            
+
+        } catch (Exception e) {
+            
+            if (e instanceof ParseException)
+                System.out.println("Error Expected Date in format: " + DATE_FORMAT);
+            else
+                System.out.println(e.getMessage());
+                e.printStackTrace();
+
+            System.exit(1);
+        }
+        
     }
 
     private void printColumns() {
