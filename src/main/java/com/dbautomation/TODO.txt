@@ -3,11 +3,9 @@ TODO:
 
 Changes made:
      Date:
-        -from Start date 
-        -to End date
-        
-        default behavior: Gives a random date from 1/1/1990 to current date.    
+        Option for different formats
 
+        Refactor and polishing of mechanism. Handling of input has been passed to the client class. 
     
 
 ------------
@@ -41,10 +39,13 @@ Colums:
     *Date:
         -from Start date 
         -to End date
-        
+        -format < dd/MM/yyyy, MM/dd/yyyy, ..., MM-dd-yyyy> choose one. 
 
         default behavior: Gives a random date from 1/1/1990 to current date.
-
+    
+    Timestap
+        -from
+        -to
     Hash:
         -Base64
         -algo1
