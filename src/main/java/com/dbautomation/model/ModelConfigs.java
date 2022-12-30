@@ -26,9 +26,19 @@ public class ModelConfigs {
     private static final int DEFAULT_START_YEAR = 90;
     private static final int DEFAULT_START_MONTH = 0;
     private static final int DEFAULT_START_DAY = 1;
+
+    private static final int DEFAULT_START_HOUR = 0;
+    private static final int DEFAULT_START_MINUTE = 0;
+    private static final int DEFAULT_START_SECOND = 0;
     
-    public static final Date DEFAULT_START_DATE = new Date(DEFAULT_START_YEAR, DEFAULT_START_MONTH, DEFAULT_START_DAY);  //Calendar.getInstance().set(DEFAULT_START_YEAR, DEFAULT_START_MONTH, DEFAULT_START_DAY);
-    
+    public static final Date DEFAULT_START_DATE = new Date(
+        DEFAULT_START_YEAR, 
+        DEFAULT_START_MONTH, 
+        DEFAULT_START_DAY, 
+        DEFAULT_START_HOUR, 
+        DEFAULT_START_MINUTE, 
+        DEFAULT_START_SECOND);  //Calendar.getInstance().set(DEFAULT_START_YEAR, DEFAULT_START_MONTH, DEFAULT_START_DAY);
+        
 
 
 }

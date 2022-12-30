@@ -1,40 +1,18 @@
 TODO:
     
 Changes made:
+    Timestamp col completed. 
 
+       
+    *Timestap
+        -from
+        -to
+        -format
 
-    Interface enforcement.
-     
-    Design analysis:
-        Keeping the defaults in the model classes feels like it makes sense. Afterall this data is
-        related and feels like it belongs together. 
+    Behind the scenes it works the same as the Date column. The cols Date and Timestamp can actually be used interchangebly. 
 
-        Pros:
-        
-    Cons:
-            Pass in null values for class constructor. 
-            *Since you can't create  custom constructors for every option. For example number model. Can't have constructor for only min or max since both will have the same method signature. 
-            Therefore, this means that model constructors need to implement logic to determine if values are null. 
-            -> Having constructors perform this null interpretation is not ideal.
-
-
-            -> Potentially more memory. Although by not much. 
-                A new object can be created multiple times with repeated default values. 
-                *Not a concern but something to mention.
-
-        
-        Central:
-        Logic of dealing interpreting user input is given to the client class(MainCommand.java)
-        Server has no knowledge of defaults or interpretation and as a result is very basic. 
-
-        Cons:
-            Verbose.
-
-        The question becomes who do I want to give the complexity to? MainCommand(Central) or Models(Distributed)?
-
-        No matter what I believe interpreting user input should not be the responsibility of the Models. Therefore the defaults should be set on the ModelConfigs.java file. 
-        Even if that means the code may be verbose. 
-            
+    DateCol refactored. 
+       
 ------------
 * : Indicates current column working on.
 
@@ -70,9 +48,11 @@ Colums:
 
         default behavior: Gives a random date from 1/1/1990 to current date.
     
-    Timestap
+    *Timestap
         -from
         -to
+        -format
+    
     Hash:
         -Base64
         -algo1

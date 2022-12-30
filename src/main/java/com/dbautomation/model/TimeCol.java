@@ -5,14 +5,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class DateCol implements Model {
+public class TimeCol implements Model {
 
     private Date startDate;
     private Date endDate;
     private SimpleDateFormat formatter;
    
 
-    public  DateCol(Date startDate, Date endDate, SimpleDateFormat formatter) throws IllegalArgumentException{
+    public  TimeCol(Date startDate, Date endDate, SimpleDateFormat formatter) throws IllegalArgumentException{
         this.startDate = startDate;
         this.endDate = endDate;
         this.formatter = formatter;

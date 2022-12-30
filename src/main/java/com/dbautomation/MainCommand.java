@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
 import org.apache.commons.lang3.ObjectUtils.Null;
 
 import com.dbautomation.model.Custom;
-import com.dbautomation.model.DateCol;
+import com.dbautomation.model.TimeCol;
 import com.dbautomation.model.Email;
 import com.dbautomation.model.ModelConfigs;
 import com.dbautomation.model.Name;
@@ -206,8 +206,9 @@ public class MainCommand implements Callable<Integer> {
      *   -format < dd/MM/yyyy, MM/dd/yyyy, ..., MM-dd-yyyy> choose one. 
      * 
      * For more information on date formats:
+     *       https://www.javatpoint.com/java-simpledateformat
      *       https://stackoverflow.com/questions/4216745/java-string-to-date-conversion 
-     *      https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/format/DateTimeFormatter.html
+     *       https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/format/DateTimeFormatter.html
      *      
      *   default behavior: Gives a random date from 1/1/1990 to current date.    
      *   
@@ -225,7 +226,7 @@ public class MainCommand implements Callable<Integer> {
             SimpleDateFormat formatter =  new SimpleDateFormat(format);
 
             columns.add (
-                new DateCol(
+                new TimeCol(
                     (startDate != null)? formatter.parse(startDate) : ModelConfigs.DEFAULT_START_DATE,
                     (endDate != null)? formatter.parse(endDate) : new Date(), //Current Date. 
                     formatter
@@ -234,8 +235,8 @@ public class MainCommand implements Callable<Integer> {
             //columns.add(new DateCol(startDate, endDate, format));
                   
             //DateCol dc = new DateCol(formatter.parse(startDate), formatter.parse(endDate));
-            DateCol dc = (DateCol)columns.get(columns.size() - 1);
-            System.out.println( dc.generateValue());
+            //DateCol dc = (DateCol)columns.get(columns.size() - 1);
+            //System.out.println( dc.generateValue());
             
 
         } catch (Exception e) {
@@ -249,6 +250,66 @@ public class MainCommand implements Callable<Integer> {
             System.exit(1);
         }
         
+    }
+
+    /**
+     * 
+     * @param startTime
+     * @param endTime
+     * @param format
+     * 
+     *  -from
+     *  -to
+     *  -format
+     * 
+     *   Same structure as date col. In fact these could be used interchangebly. However, for the sake of
+     *  simplicity, they have been broken in two. 
+     * 
+     *  An example usage of this col would be. timestamp -format "HH:mm:ss Z" 
+     *  For more information you can visit the link:
+     *      https://www.javatpoint.com/java-simpledateformat
+     *      https://stackoverflow.com/questions/4216745/java-string-to-date-conversion 
+     *      https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/format/DateTimeFormatter.html
+     *      
+     * 
+     */
+    @Command(name = "timestamp")
+    public void addTimeStamp(
+        @Option(names = {"-from", "--from"}, arity = "1") String startTime, 
+        @Option(names = {"-to", "--to"}, arity = "1") String endTime, 
+        @Option(names = {"-format", "--format"}, arity = "1", defaultValue = "hh:mm:ss") String format
+    ){
+        try {
+
+            SimpleDateFormat formatter =  new SimpleDateFormat(format);
+
+            columns.add (
+                new TimeCol(
+                    (startTime != null)? formatter.parse(startTime) : ModelConfigs.DEFAULT_START_DATE,
+                    (endTime != null)? formatter.parse(endTime) : new Date(), //Current Date. 
+                    formatter
+                )
+            );
+            //columns.add(new DateCol(startTime, endTime, format));
+                  
+            //DateCol dc = new DateCol(formatter.parse(startTime), formatter.parse(endDate));
+            //TimeCol dc = (TimeCol)columns.get(columns.size() - 1);
+            //System.out.println( dc.generateValue());
+            
+
+        } catch (Exception e) {
+            
+            if (e instanceof ParseException)
+                System.out.println("Error Expected input date to be in format \'"+ format +"\'.\n Please check \'" + startTime + "\' and \'" + endTime + "\'");
+            else
+                System.out.println(e.getMessage());
+                //e.printStackTrace();
+
+            System.exit(1);
+        }
+
+        
+        //columns.add(new TiemSta)
     }
 
     private void printColumns() {
