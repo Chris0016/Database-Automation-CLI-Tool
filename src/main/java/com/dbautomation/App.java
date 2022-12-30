@@ -12,7 +12,7 @@ public class App {
         boolean fetchInOrder = false;
 
 
-        String[] myArgs = { "date", "-f", "MM-dd-yyyy"};
+        String[] myArgs = { "date", "-format", "MM-dd-yyyy", "-to", "08-19-2005"};
      
         int exitCode = new CommandLine(new MainCommand()).execute(myArgs);
         System.exit(exitCode);

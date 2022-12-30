@@ -23,13 +23,11 @@ public class ModelConfigs {
     public static final String MIN_EMAIL_LENGTH = "5";
 
 
-    private static final int DEFAULT_START_YEAR = 1990;
-    private static final int DEFAULT_START_MONTH = 1;
+    private static final int DEFAULT_START_YEAR = 90;
+    private static final int DEFAULT_START_MONTH = 0;
     private static final int DEFAULT_START_DAY = 1;
     
-
-    public static final Date DEFAULT_START_DATE = new Date(DEFAULT_START_YEAR, DEFAULT_START_MONTH, DEFAULT_START_DAY);  //Calendar.getInstance().set(DEFAULT_START_YEAR, DEFAULT_START_MONTH, DEFAULT_START_DAY);;
-    public static final Date DEFAULT_END_DATE = new Date();
+    public static final Date DEFAULT_START_DATE = new Date(DEFAULT_START_YEAR, DEFAULT_START_MONTH, DEFAULT_START_DAY);  //Calendar.getInstance().set(DEFAULT_START_YEAR, DEFAULT_START_MONTH, DEFAULT_START_DAY);
     
 
 

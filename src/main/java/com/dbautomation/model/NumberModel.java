@@ -2,7 +2,7 @@ package com.dbautomation.model;
 
 import java.text.DecimalFormat;
 
-public class NumberModel {
+public class NumberModel implements Model{
     
     private boolean isDecimal;
     private String currency;
@@ -10,7 +10,7 @@ public class NumberModel {
     private double min;
 
     private final String format = "#.###";
-    private final DecimalFormat df = new DecimalFormat(format);; 
+    private final DecimalFormat df = new DecimalFormat(format);
 
     public NumberModel( double max, double min, boolean isDecimal, String currency) throws IllegalArgumentException{
 

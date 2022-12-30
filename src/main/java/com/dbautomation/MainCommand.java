@@ -217,24 +217,34 @@ public class MainCommand implements Callable<Integer> {
     public void addEmail(
         @Option(names = {"-from", "--from"}, arity = "1") String startDate,
         @Option(names = {"-to", "--to"}, arity = "1") String endDate,
-        @Option(names = {"-f", "--format"}, arity = "1") String format
+        @Option(names = {"-format", "--format"}, arity = "1", defaultValue = "MM/dd/yyyy" ) String format
     ){
        
         try {
-            columns.add(new DateCol(startDate, endDate, format));
+
+            SimpleDateFormat formatter =  new SimpleDateFormat(format);
+
+            columns.add (
+                new DateCol(
+                    (startDate != null)? formatter.parse(startDate) : ModelConfigs.DEFAULT_START_DATE,
+                    (endDate != null)? formatter.parse(endDate) : new Date(), //Current Date. 
+                    formatter
+                )
+            );
+            //columns.add(new DateCol(startDate, endDate, format));
                   
             //DateCol dc = new DateCol(formatter.parse(startDate), formatter.parse(endDate));
-            //DateCol dc = (DateCol)columns.get(columns.size() - 1);
-            //System.out.println( dc.generateValue());
+            DateCol dc = (DateCol)columns.get(columns.size() - 1);
+            System.out.println( dc.generateValue());
             
 
         } catch (Exception e) {
             
             if (e instanceof ParseException)
-                System.out.println(e.getMessage());
+                System.out.println("Error Expected input date to be in format \'"+ format +"\'.\n Please check \'" + startDate + "\' and \'" + endDate + "\'");
             else
                 System.out.println(e.getMessage());
-                e.printStackTrace();
+                //e.printStackTrace();
 
             System.exit(1);
         }

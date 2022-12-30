@@ -4,7 +4,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 import com.dbautomation.ConstraintValidator;
 
-public class Text implements StringModelInterface {
+public class Text implements Model {
     private int minLength;
     private int maxLength;
 

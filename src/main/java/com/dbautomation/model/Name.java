@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Name implements StringModelInterface {
+public class Name implements Model {
 
     private Scanner reader;
 
