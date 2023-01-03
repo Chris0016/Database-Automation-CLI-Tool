@@ -1,18 +1,21 @@
 TODO:
     
 Changes made:
-    Timestamp col completed. 
-
-       
-    *Timestap
-        -from
-        -to
-        -format
-
-    Behind the scenes it works the same as the Date column. The cols Date and Timestamp can actually be used interchangebly. 
-
-    DateCol refactored. 
-       
+   Columns added
+   
+    *Address:
+        -lcl Locale default is en-US
+        -street: Specify only street name
+    *City:
+        -lcl Locale default is en-US
+    *Zipcode:
+        -lcl Locale default is en-US
+    *State:
+        -lcl Locale default is en-US
+    *Country:
+        -lcl Locale default is en-US
+    *Timezone:
+        -lcl Locale default is en-US
 ------------
 * : Indicates current column working on.
 
@@ -48,10 +51,24 @@ Colums:
 
         default behavior: Gives a random date from 1/1/1990 to current date.
     
-    *Timestap
+    Timestap
         -from
         -to
         -format
+    
+    *Address:
+        -lcl Locale default is en-US
+        -street: Specify only street name
+    *City:
+        -lcl Locale default is en-US
+    *Zipcode:
+        -lcl Locale default is en-US
+    *State:
+        -lcl Locale default is en-US
+    *Country:
+        -lcl Locale default is en-US
+    *Timezone:
+        -lcl Locale default is en-US
     
     Hash:
         -Base64

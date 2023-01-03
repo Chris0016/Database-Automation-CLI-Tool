@@ -3,15 +3,12 @@ package com.dbautomation;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Month;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.concurrent.Callable;
 
-import org.apache.commons.lang3.ObjectUtils.Null;
-
+import com.dbautomation.model.FakeAddress;
 import com.dbautomation.model.Custom;
 import com.dbautomation.model.TimeCol;
 import com.dbautomation.model.Email;
@@ -30,6 +27,9 @@ public class MainCommand implements Callable<Integer> {
      
 
     private ArrayList<Object> columns = new ArrayList<>();
+
+    String lcl = "en-US";
+    FakeAddress fk = new FakeAddress("", lcl);
    
 
     // @Option(names = { "-table", "--table" }, arity = "1", required = true)
@@ -194,7 +194,6 @@ public class MainCommand implements Callable<Integer> {
     }
 
  
-
     /**
      * 
      * @param startDate
@@ -307,10 +306,105 @@ public class MainCommand implements Callable<Integer> {
 
             System.exit(1);
         }
-
-        
-        //columns.add(new TiemSta)
     }
+
+    /**
+     * 
+     * @param isStreetAddress
+     * @param locale
+     * 
+     * -lcl Locale default is en-US
+     * -street: Specify only street name
+     */
+    @Command(name = "address")
+    public void addAddress(
+        @Option(names = {"-street", "--street-address"}, arity = "0") boolean isStreetAddress,
+        @Option(names = {"-lcl", "--locale"}, arity = "1", defaultValue = "en-US") String locale
+        
+    ){
+        if (isStreetAddress)
+            columns.add(new FakeAddress("address.streetname", locale));
+        else
+            columns.add(new FakeAddress("address", locale));
+    }
+
+    /**
+     * 
+     * @param locale
+     * 
+     *  -lcl Locale default is en-US
+     */
+    @Command(name = "city")
+    public void addCity(
+        @Option(names = {"-lcl", "--locale"}, arity = "1", defaultValue = "en-US") String locale
+        
+    ){
+        columns.add(new FakeAddress("address.city", locale));
+
+    }
+
+    /**
+     * 
+     * @param locale
+     * 
+     *  -lcl Locale default is en-US
+     */
+    @Command(name = "zipcode")
+    public void addZipCode(
+        @Option(names = {"-lcl", "--locale"}, arity = "1", defaultValue = "en-US") String locale
+        
+    ){
+        columns.add(new FakeAddress("address.zipcode", locale));
+    }
+
+
+
+    /**
+     * 
+     * @param locale
+     * 
+     *  -lcl Locale default is en-US
+     */
+    @Command(name = "state")
+    public void addState(
+        @Option(names = {"-lcl", "--locale"}, arity = "1", defaultValue = "en-US") String locale
+        
+    ){
+        columns.add(new FakeAddress("address.state", locale));
+    }
+
+
+    /**
+     * 
+     * @param locale
+     * 
+     *  -lcl Locale default is en-US
+     *  Locale doesn't do anything for country. For consistency purpose it has been kept. 
+     */
+    @Command(name = "country")
+    public void addCountry(
+        @Option(names = {"-lcl", "--locale"}, arity = "1", defaultValue = "en-US") String locale
+        
+    ){
+        columns.add(new FakeAddress("address.country", locale));
+    }
+
+
+    /**
+     * 
+     * @param locale
+     * 
+     *  -lcl Locale default is en-US
+     *  Locale doesn't do anything for country. For consistency purpose it has been kept. 
+     */
+    @Command(name = "timezone")
+    public void addTimeZone(
+        @Option(names = {"-lcl", "--locale"}, arity = "1", defaultValue = "en-US") String locale
+        
+    ){
+        columns.add(new FakeAddress("address.timezone", locale));
+    }
+    
 
     private void printColumns() {
         for (Object obj : columns)

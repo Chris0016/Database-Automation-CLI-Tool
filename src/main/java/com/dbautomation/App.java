@@ -12,7 +12,7 @@ public class App {
         //boolean fetchInOrder = false;
 
 
-        String[] myArgs = { "timestamp", "-format", "HH:mm:ss z"};
+        String[] myArgs = { "timezone", "-lcl", "en-GB"};
      
         int exitCode = new CommandLine(new MainCommand()).execute(myArgs);
         System.exit(exitCode);
