@@ -66,4 +66,9 @@ public class Name implements Model{
 
     }
 
+    public String toString(){
+        return "Name: <OK: No internal details>";
+        
+    }
+
 }

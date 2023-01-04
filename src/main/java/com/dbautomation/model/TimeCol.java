@@ -31,5 +31,12 @@ public class TimeCol implements Model{
 
     }    
     
+
+    public String toString(){
+        return "Date:"
+        +"\nStart Date: " + startDate.toString()
+        +"\nEnd Date: " + endDate.toString()
+        +"\nFormat: " + formatter.toString();
+    }
     
 }

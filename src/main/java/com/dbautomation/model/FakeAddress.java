@@ -18,9 +18,6 @@ public class FakeAddress implements Model{
   
     }
 
-
-    
-    //String key
     public String generateValue(){
 
         //preferred:
@@ -46,6 +43,11 @@ public class FakeAddress implements Model{
         }
 
 
+    }
+
+    public String toString(){
+        return "Address Col(streetname/city/zipcode/state/country/timezone):"
+        +"\nKey: " + key;
     }
 
 }

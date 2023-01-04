@@ -1,6 +1,7 @@
 package com.dbautomation.model;
 
 import java.text.DecimalFormat;
+import java.util.Locale.IsoCountryCode;
 
 public class NumberModel implements Model {
     
@@ -37,5 +38,13 @@ public class NumberModel implements Model {
     public String generateValue(){
         double val = (Math.random() * (max - min + 1)) + min;
         return currency + ((isDecimal)?  format(val) : (int)val);
+    }
+
+    public String toString(){
+        return "Number: "
+            +"\nMax: " + max
+            + "\nMin: " + min
+            + "\nIs Decimal: " + isDecimal
+            + "\nCurrency: " + currency;
     }
 }

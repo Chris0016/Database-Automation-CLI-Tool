@@ -39,5 +39,6 @@ public class ModelConfigs {
         DEFAULT_START_SECOND);  //Calendar.getInstance().set(DEFAULT_START_YEAR, DEFAULT_START_MONTH, DEFAULT_START_DAY);
         
 
+    //private static String[] DOMAINS = {"gmail.com", "outlook.com", "yahoo.com"};
 
 }

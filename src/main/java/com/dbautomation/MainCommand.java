@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.Callable;
 
@@ -39,7 +40,13 @@ public class MainCommand implements Callable<Integer> {
     @Option(names = { "-rows", "--rows" }, arity = "1", required = true)
     private int numRows;
 
-    @Command(name = "name")
+    @Option(names = {"-cols", "--colum-names"}, arity = "1...15", required = true)
+    private List<String> columnNames;
+
+
+    
+
+    @Command(name = "nameC")
     public void addName() {
         try {
             columns.add(new Name());
@@ -52,7 +59,7 @@ public class MainCommand implements Callable<Integer> {
 
     }
 
-    @Command(name = "text")
+    @Command(name = "textC")
     public void addText(
             @Option(names = { "-mnLen",
                     "minLength" }, arity = "1", defaultValue = ModelConfigs.LOWER_BOUND_STRING) int minLength,
@@ -87,7 +94,7 @@ public class MainCommand implements Callable<Integer> {
      *
      * 
      */
-    @Command(name = "custom")
+    @Command(name = "customC")
     public void addCustomColumn(
         @Option(names = { "-src", "--source" }, arity = "1", required = true) String inputDir,
         @Option(names = {"-isLarge", "--isLargeFile" }, arity = "0") boolean isLargeFile, 
@@ -129,7 +136,7 @@ public class MainCommand implements Callable<Integer> {
      *
      *   default behavior: an integer > 0 is provided
      */
-    @Command(name = "number")
+    @Command(name = "numberC")
     public void addNumber(
         @Option(names = {"-dec", "--decimal"}, arity = "0") boolean isDecimal, 
         @Option(names = {"-curr", "--currency"}, arity = "1", defaultValue = "") String currency,
@@ -160,7 +167,7 @@ public class MainCommand implements Callable<Integer> {
      * database against invalid domains. 
      * 
      */
-    @Command(name = "email")
+    @Command(name = "emailC")
     public void addEmail(
         @Option(names = {"-domains", "--domains"}, arity = "1...4") String[] domains, 
         @Option(names = {"-maxLen", "--maxLength"}, arity = "1", defaultValue = ModelConfigs.MAX_EMAIL_LENGTH) int maxLen,
@@ -212,7 +219,7 @@ public class MainCommand implements Callable<Integer> {
      *   
      * 
      */
-    @Command(name = "date")
+    @Command(name = "dateC")
     public void addDate(
         @Option(names = {"-from", "--from"}, arity = "1") String startDate,
         @Option(names = {"-to", "--to"}, arity = "1") String endDate,
@@ -271,7 +278,7 @@ public class MainCommand implements Callable<Integer> {
      *      
      * 
      */
-    @Command(name = "timestamp")
+    @Command(name = "timestampC")
     public void addTimeStamp(
         @Option(names = {"-from", "--from"}, arity = "1") String startTime, 
         @Option(names = {"-to", "--to"}, arity = "1") String endTime, 
@@ -315,7 +322,7 @@ public class MainCommand implements Callable<Integer> {
      * -lcl Locale default is en-US
      * -street: Specify only street name
      */
-    @Command(name = "address")
+    @Command(name = "addressC")
     public void addAddress(
         @Option(names = {"-street", "--street-address"}, arity = "0") boolean isStreetAddress,
         @Option(names = {"-lcl", "--locale"}, arity = "1", defaultValue = "en-US") String locale
@@ -333,7 +340,7 @@ public class MainCommand implements Callable<Integer> {
      * 
      *  -lcl Locale default is en-US
      */
-    @Command(name = "city")
+    @Command(name = "cityC")
     public void addCity(
         @Option(names = {"-lcl", "--locale"}, arity = "1", defaultValue = "en-US") String locale
         
@@ -348,7 +355,7 @@ public class MainCommand implements Callable<Integer> {
      * 
      *  -lcl Locale default is en-US
      */
-    @Command(name = "zipcode")
+    @Command(name = "zipcodeC")
     public void addZipCode(
         @Option(names = {"-lcl", "--locale"}, arity = "1", defaultValue = "en-US") String locale
         
@@ -364,7 +371,7 @@ public class MainCommand implements Callable<Integer> {
      * 
      *  -lcl Locale default is en-US
      */
-    @Command(name = "state")
+    @Command(name = "stateC")
     public void addState(
         @Option(names = {"-lcl", "--locale"}, arity = "1", defaultValue = "en-US") String locale
         
@@ -380,7 +387,7 @@ public class MainCommand implements Callable<Integer> {
      *  -lcl Locale default is en-US
      *  Locale doesn't do anything for country. For consistency purpose it has been kept. 
      */
-    @Command(name = "country")
+    @Command(name = "countryC")
     public void addCountry(
         @Option(names = {"-lcl", "--locale"}, arity = "1", defaultValue = "en-US") String locale
         
@@ -396,7 +403,7 @@ public class MainCommand implements Callable<Integer> {
      *  -lcl Locale default is en-US
      *  Locale doesn't do anything for country. For consistency purpose it has been kept. 
      */
-    @Command(name = "timezone")
+    @Command(name = "timezoneC")
     public void addTimeZone(
         @Option(names = {"-lcl", "--locale"}, arity = "1", defaultValue = "en-US") String locale
         
@@ -421,6 +428,10 @@ public class MainCommand implements Callable<Integer> {
 
     public String getTable(){
         return this.tableName;
+    }
+
+    public List<String> getColumnNames(){
+        return this.columnNames;
     }
 
 

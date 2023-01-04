@@ -1,6 +1,7 @@
 package com.dbautomation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.dbautomation.database.DBActions;
 
@@ -18,11 +19,13 @@ public class App {
 
         String[] myArgs = { "-table", "myTable", 
                             "-rows", "10",  
-                            "name",
-                            "text", "-mnLen", "4", "-mxLen", "5",
-                            "email", "-minLen", "3",  "-maxLen", "8" ,
-                            "date", "-format", "dd/MM/yyyy", "-from", "03/12/2010"
-        
+                            "-cols", "name", "comment", "email", "date",
+                            "nameC",
+                            "textC", "-mnLen", "5", "-mxLen", "10",
+                            "emailC", "-maxLen", "5",
+                            "numberC", "-max", "800", "-min", "500", "-curr", "Y"
+
+                           
                             };
 
         MainCommand mc = new MainCommand();
@@ -31,20 +34,29 @@ public class App {
         
         int rows = mc.getRows();
         String table = mc.getTable();
+        List<String> colNames = mc.getColumnNames();
+        
+
+
+      
+
+
+        DBActions ac = new DBActions( mc.getCols(), mc.getColumnNames() ,mc.getRows() , mc.getTable());
+        
 
         System.out.println(
-        "Rows: " + rows
+            "Rows: " + rows
             + "\nTable: " + table
+            + "\nColumns: " + colNames.toString()
         );
 
-
-        DBActions ac = new DBActions( mc.getCols(), mc.getRows() , mc.getTable());
+        // for (int i = 0; i < 10; i++) {
+        //     System.out.println( ac.getVals() );
+        // }
         
-        for (int i = 0; i < 10; i++) {
-            System.out.println( ac.getVals() );
-        }
-
-        //ac.insertCols();
+       System.out.println(ac.getStartSQL());
+       
+        ac.insertCols();
         
         System.exit(exitCode);
 

@@ -25,4 +25,15 @@ public class Text implements Model {
         return RandomStringUtils.random(length, true, false);
 
     }
+
+
+    @Override
+    public String toString() {
+        return "Text:"
+            +"\nminLength: " + minLength 
+            +"\nmaxLength: " + maxLength;
+    }
+
+
+    
 }

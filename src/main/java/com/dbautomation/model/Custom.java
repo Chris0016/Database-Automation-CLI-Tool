@@ -83,6 +83,11 @@ public class Custom implements Model{
         
     }
 
+    public int getTotalItems() {
+        return numberOfItems;
+    }
+
+
     public String generateValue()   {
         // Handle exception in caller for isLargeFile where number of items given does
         // not match the actual number of items in file(numItemsGiven > numItems).
@@ -127,9 +132,17 @@ public class Custom implements Model{
         return null;
     }
 
-
-    public int getTotalItems() {
-        return numberOfItems;
+    public String toString(){
+        return "Custom Col:"
+            + "\nInput file path: \'" + inputFile.toString() + "\'" 
+            + "\nIs large file: " + isLargeFile 
+            + "\nFetch in order: " + fetchInOrder
+            + "\nNumber of items in file: " + numberOfItems;
     }
+
+
+   
+
+
 
 }
