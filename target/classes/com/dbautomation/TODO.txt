@@ -1,8 +1,15 @@
 TODO:
+    Test Model columns for different inputs:
+        ->Fix Bug in email
+
+    *Status Reporting
     
 Changes made:
-   Columns added
-   
+
+    *Generate SQL String based off given input. 
+    *Run SQL Command
+
+    
     
 ------------
 * : Indicates current column working on.
@@ -68,6 +75,30 @@ Colums:
 Notes:
      
 
+    For BB Connectin follow example:
+
+    public void addServiceToDB(Service s, Account acct) throws SQLException {
+
+        System.out.println("...adding to db");
+
+        // System.out.println("Current max count in services: " + currentMax); //DEBUG
+
+        String query = "INSERT INTO services VALUES ( "
+                + s.getServiceId()
+                + ", " + acct.getUserId()
+                + ", \'" + s.getServiceName() + "\'"
+                + ", \'" + s.getServiceUsername() + "\'"
+                + ", \'" + s.getServicePassword() + "\'"
+                + ", \'" + s.getDateCreated() + "\'"
+                + ", \'" + s.getLastPasswordChange() + "\'"
+                + " );";
+
+        PreparedStatement p = connection.prepareStatement(query);
+        p.executeUpdate(query);
+
+    }
+
+
     Account for primary key -> Make requirement that database must be set to autofill keys
     sql statement might look like -. INsert (?,?,?,?) values (*nokey,* value1, value2,... )
 
@@ -77,3 +108,6 @@ Notes:
 
     Give examples of usage in documentation: 
     Single Day -> Just use the custom col like -> custom -src dateFile. 
+
+
+

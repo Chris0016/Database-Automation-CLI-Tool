@@ -20,8 +20,9 @@ public class App {
                             "-rows", "10",  
                             "name",
                             "text", "-mnLen", "4", "-mxLen", "5",
-                            "email", "-maxLen", "5" ,
-                            
+                            "email", "-minLen", "3",  "-maxLen", "8" ,
+                            "date", "-format", "dd/MM/yyyy", "-from", "03/12/2010"
+        
                             };
 
         MainCommand mc = new MainCommand();
@@ -37,14 +38,13 @@ public class App {
         );
 
 
-
-
         DBActions ac = new DBActions( mc.getCols(), mc.getRows() , mc.getTable());
         
         for (int i = 0; i < 10; i++) {
             System.out.println( ac.getVals() );
         }
-        
+
+        //ac.insertCols();
         
         System.exit(exitCode);
 

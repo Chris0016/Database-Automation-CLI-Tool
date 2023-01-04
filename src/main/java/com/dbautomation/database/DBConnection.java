@@ -47,8 +47,9 @@ public class DBConnection implements AutoCloseable {
         }
     }
 
-    public int insertSQL(String insertSQL){
-        return 0;
+    public void insertSQL(String query) throws SQLException{
+        p = connection.prepareStatement(query);
+        p.executeUpdate(query);
     }
 
     @Override

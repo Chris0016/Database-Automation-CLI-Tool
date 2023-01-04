@@ -24,11 +24,11 @@ public class DBActions {
     public int insertCols(){
         
         String startSQL =  "INSERT INTO " + table + " VALUES (";
-        String sql;
+        String query;
         try (DBConnection con = new DBConnection()) {
             for (int i = 0; i < numRows; i++) {
-                sql =  startSQL + getVals() + ");";
-                con.insertSQL( sql);
+                query =  startSQL + getVals() + ");";
+                con.insertSQL(query);
             }
             
         } catch (Exception e) {
@@ -45,7 +45,8 @@ public class DBActions {
             vals += ((Model)col).generateValue() + ", ";
         }
 
-        return vals.substring(0, vals.length() - 2);
+
+        return vals;
     }
 
 }

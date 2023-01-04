@@ -240,7 +240,7 @@ public class MainCommand implements Callable<Integer> {
         } catch (Exception e) {
             
             if (e instanceof ParseException)
-                System.out.println("Error Expected input date to be in format \'"+ format +"\'.\n Please check \'" + startDate + "\' and \'" + endDate + "\'");
+                System.out.println("Error Expected input date to be in format \'"+ format + "\' .");
             else
                 System.out.println(e.getMessage());
                 //e.printStackTrace();

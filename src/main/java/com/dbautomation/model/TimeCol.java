@@ -12,18 +12,19 @@ public class TimeCol implements Model{
    
 
     public  TimeCol(Date startDate, Date endDate, SimpleDateFormat formatter) throws IllegalArgumentException{
+        if (startDate.getTime() > endDate.getTime())
+             throw new IllegalArgumentException("Error Start Date \'" + startDate.toString() + "\' is greater than end date \'" + endDate.toString() + "\'.\n->Please specify a later end date using -to <date in format> or an earlier start date using -from <date in format>");
+        
         this.startDate = startDate;
         this.endDate = endDate;
         this.formatter = formatter;
 
-        if (this.startDate.getTime() > this.endDate.getTime())
-             throw new IllegalArgumentException("Error Start Date \'" + startDate.toString() + "\' is greater than end date \'" + endDate.toString() + "\'");
-
+        
     }
 
     public String generateValue(){
-        System.out.println("Start Date: " + startDate.toString());
-        System.out.println("End Date: " + endDate.toString());
+        //System.out.println("Start Date: " + startDate.toString());
+        //System.out.println("End Date: " + endDate.toString());
         
         Date randomDate =  new Date(ThreadLocalRandom.current().nextLong(startDate.getTime(), endDate.getTime()));
         return formatter.format(randomDate);
