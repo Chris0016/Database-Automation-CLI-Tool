@@ -2,7 +2,6 @@ package com.dbautomation.model;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-import com.dbautomation.ConstraintValidator;
 
 public class Text implements Model {
     private int minLength;
@@ -11,14 +10,15 @@ public class Text implements Model {
     public Text(int minLength, int maxLength) throws IllegalArgumentException {
 
         // Throws illegal arguement exception if a test is failed.
-        ConstraintValidator.validateArguments(minLength, maxLength, ModelConfigs.TEXT_LOWERBOUND,
-                ModelConfigs.TEXT_UPPERBOUND);
+        if (minLength > maxLength)
+            throw new IllegalArgumentException("Error: Minimum length: \'" + minLength + "\'cannot be greater than max length: \'" + maxLength + "\'");
+
 
         this.minLength = minLength;
         this.maxLength = maxLength;
     }
 
-    @Override
+
     public String generateValue() {
 
         int length = (int) (Math.random() * (maxLength - minLength + 1)) + minLength;

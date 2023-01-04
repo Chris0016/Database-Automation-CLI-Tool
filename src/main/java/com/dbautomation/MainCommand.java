@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.concurrent.Callable;
 
 import com.dbautomation.model.FakeAddress;
+import com.dbautomation.model.Model;
 import com.dbautomation.model.Custom;
 import com.dbautomation.model.TimeCol;
 import com.dbautomation.model.Email;
@@ -32,17 +33,17 @@ public class MainCommand implements Callable<Integer> {
     FakeAddress fk = new FakeAddress("", lcl);
    
 
-    // @Option(names = { "-table", "--table" }, arity = "1", required = true)
-    // private String tableName;
+    @Option(names = { "-table", "--table" }, arity = "1", required = true)
+    private String tableName;
 
-    // @Option(names = { "-rows", "--rows" }, arity = "1", required = true)
-    // private int numRows;
+    @Option(names = { "-rows", "--rows" }, arity = "1", required = true)
+    private int numRows;
 
     @Command(name = "name")
     public void addName() {
         try {
             columns.add(new Name());
-            System.out.println(new Name().generateValue());
+            //System.out.println(new Name().generateValue());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -61,8 +62,6 @@ public class MainCommand implements Callable<Integer> {
         try {
 
             columns.add(new Text(minLength, maxLength));
-
-            printColumns();
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -170,9 +169,9 @@ public class MainCommand implements Callable<Integer> {
         try {
             
             if (domains == null)
-                columns.add(new Email(maxLen, minLen));
+                columns.add(new Email(minLen, maxLen));
             else
-                columns.add(new Email(domains, maxLen, minLen));
+                columns.add(new Email(domains, minLen, maxLen));
 
             // //Testing:
             // Email e;
@@ -186,7 +185,7 @@ public class MainCommand implements Callable<Integer> {
             // }   
 
         } catch (Exception e){
-            System.out.println("Error:" + e.getMessage());
+            System.out.println( e.getMessage());
             System.exit(1);
         }
        
@@ -214,7 +213,7 @@ public class MainCommand implements Callable<Integer> {
      * 
      */
     @Command(name = "date")
-    public void addEmail(
+    public void addDate(
         @Option(names = {"-from", "--from"}, arity = "1") String startDate,
         @Option(names = {"-to", "--to"}, arity = "1") String endDate,
         @Option(names = {"-format", "--format"}, arity = "1", defaultValue = "MM/dd/yyyy" ) String format
@@ -411,6 +410,19 @@ public class MainCommand implements Callable<Integer> {
             System.out.println(obj.getClass().toString() + "\n");
 
     }
+
+    public ArrayList<Object> getCols(){
+        return this.columns;
+    }
+
+    public int getRows(){
+        return this.numRows;
+    }
+
+    public String getTable(){
+        return this.tableName;
+    }
+
 
 
     @Override

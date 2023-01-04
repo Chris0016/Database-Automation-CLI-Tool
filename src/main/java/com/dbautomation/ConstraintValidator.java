@@ -17,7 +17,7 @@ public class ConstraintValidator {
             throw new IllegalArgumentException("Maximum length cannot be greater than  upperbound: " + TEXT_UPPERBOUND);
 
         if (minLength > maxLength)
-            throw new IllegalArgumentException("Minum length cannot be greater than max length");
+            throw new IllegalArgumentException("Minimum length cannot be greater than max length");
 
     }
 }

@@ -2,7 +2,7 @@ package com.dbautomation.model;
 
 import java.text.DecimalFormat;
 
-public class NumberModel implements Model{
+public class NumberModel implements Model {
     
     private boolean isDecimal;
     private String currency;

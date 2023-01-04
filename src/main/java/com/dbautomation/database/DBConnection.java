@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class DBConnection implements AutoCloseable {
@@ -44,6 +45,10 @@ public class DBConnection implements AutoCloseable {
             if (stmt == null || p == null)
                 connection.close();
         }
+    }
+
+    public int insertSQL(String insertSQL){
+        return 0;
     }
 
     @Override

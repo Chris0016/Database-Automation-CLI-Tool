@@ -3,19 +3,7 @@ TODO:
 Changes made:
    Columns added
    
-    *Address:
-        -lcl Locale default is en-US
-        -street: Specify only street name
-    *City:
-        -lcl Locale default is en-US
-    *Zipcode:
-        -lcl Locale default is en-US
-    *State:
-        -lcl Locale default is en-US
-    *Country:
-        -lcl Locale default is en-US
-    *Timezone:
-        -lcl Locale default is en-US
+    
 ------------
 * : Indicates current column working on.
 
@@ -56,25 +44,23 @@ Colums:
         -to
         -format
     
-    *Address:
+    Address:
         -lcl Locale default is en-US
         -street: Specify only street name
-    *City:
+    City:
         -lcl Locale default is en-US
-    *Zipcode:
+    Zipcode:
         -lcl Locale default is en-US
-    *State:
+    State:
         -lcl Locale default is en-US
-    *Country:
+    Country:
         -lcl Locale default is en-US
-    *Timezone:
+    Timezone:
         -lcl Locale default is en-US
     
-    Hash:
-        -Base64
-        -algo1
-        -algo2
-        ....
+    *Generate SQL String based off given input. 
+    Run SQL Command
+    Status Reporting
         
 
 

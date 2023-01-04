@@ -5,7 +5,7 @@ import java.util.Locale;
 import net.datafaker.Address;
 import net.datafaker.Faker;
 
-public class FakeAddress {
+public class FakeAddress implements Model{
     
     private Address faker;
     private String key;

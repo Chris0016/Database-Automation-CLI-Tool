@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TimeCol implements Model {
+public class TimeCol implements Model{
 
     private Date startDate;
     private Date endDate;
@@ -21,8 +21,6 @@ public class TimeCol implements Model {
 
     }
 
-
-    @Override
     public String generateValue(){
         System.out.println("Start Date: " + startDate.toString());
         System.out.println("End Date: " + endDate.toString());

@@ -1,5 +1,9 @@
 package com.dbautomation;
 
+import java.util.ArrayList;
+
+import com.dbautomation.database.DBActions;
+
 import picocli.CommandLine;
 
 public class App {
@@ -12,9 +16,36 @@ public class App {
         //boolean fetchInOrder = false;
 
 
-        String[] myArgs = { "timezone", "-lcl", "en-GB"};
+        String[] myArgs = { "-table", "myTable", 
+                            "-rows", "10",  
+                            "name",
+                            "text", "-mnLen", "4", "-mxLen", "5",
+                            "email", "-maxLen", "5" ,
+                            
+                            };
+
+        MainCommand mc = new MainCommand();
      
-        int exitCode = new CommandLine(new MainCommand()).execute(myArgs);
+        int exitCode = new CommandLine(mc).execute(myArgs);
+        
+        int rows = mc.getRows();
+        String table = mc.getTable();
+
+        System.out.println(
+        "Rows: " + rows
+            + "\nTable: " + table
+        );
+
+
+
+
+        DBActions ac = new DBActions( mc.getCols(), mc.getRows() , mc.getTable());
+        
+        for (int i = 0; i < 10; i++) {
+            System.out.println( ac.getVals() );
+        }
+        
+        
         System.exit(exitCode);
 
     }

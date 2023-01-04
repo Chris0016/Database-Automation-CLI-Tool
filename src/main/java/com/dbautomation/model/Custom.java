@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 
-public class Custom { // Implements?
+public class Custom implements Model{ 
 
     private File inputFile;
     private Scanner reader;
@@ -68,54 +68,63 @@ public class Custom { // Implements?
 
     }
 
-    private void resetScanner() throws FileNotFoundException {
-        reader = new Scanner(inputFile);
-        if (isLargeFile)
-            reader.nextLine(); //Skip first item. Is metadata. 
-        
+    private void resetScanner() {
+
+        try {
+            reader = new Scanner(inputFile);
+            if (isLargeFile)
+                reader.nextLine(); //Skip first item. Is metadata. 
+            
+        }catch(FileNotFoundException e){
+            System.out.println("Error input file \'" + inputFile + "\'' has been deleted or cannot be found.");
+            System.exit(1);
+        }
+       
         
     }
 
-
-
-    public String generateValue() throws FileNotFoundException, NoSuchElementException {
+    public String generateValue()   {
         // Handle exception in caller for isLargeFile where number of items given does
         // not match the actual number of items in file(numItemsGiven > numItems).
         // Therefore a NoSuchElementException occurrs while iterating through the file.
+        try{
+            resetScanner();
+            String itemToGive;
 
-        resetScanner();
-        String itemToGive;
+            if (fetchInOrder) {
 
-        if (fetchInOrder) {
+                for (int i = 0; i < currentItemIndex; i++) {
+                    reader.nextLine();
+                }
 
-            for (int i = 0; i < currentItemIndex; i++) {
+                itemToGive = reader.nextLine();
+                reader.close();
+                currentItemIndex++;
+                return itemToGive;
+            }
+
+
+            // item is fetched zero-index based,do not add 1 to call and save .next in a
+            // variable
+            int itemIdx = (int) (Math.random() * (numberOfItems));
+
+            //System.out.println("Item idx: " + itemIdx);
+
+            for (int i = 0; i < itemIdx ; i++) {
                 reader.nextLine();
             }
 
             itemToGive = reader.nextLine();
             reader.close();
-            currentItemIndex++;
+
             return itemToGive;
+
+        } catch (NoSuchElementException e){
+            System.out.println("Error reached the end of file \'" + inputFile + "\' while parsing.\n Error likely occured because the given number of items does not match the actual number. ");
+            System.exit(1);
         }
 
-        // Return random item from file
-
-
-        // item is fetched zero-index based,do not add 1 to call and save .next in a
-        // variable
-        int itemIdx = (int) (Math.random() * (numberOfItems));
-
- 
-        //System.out.println("Item idx: " + itemIdx);
-
-        for (int i = 0; i < itemIdx ; i++) {
-            reader.nextLine();
-        }
-
-        itemToGive = reader.nextLine();
-        reader.close();
-
-        return itemToGive;
+        return null;
     }
 
 

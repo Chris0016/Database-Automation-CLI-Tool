@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Name implements Model {
+public class Name implements Model{
 
     private Scanner reader;
 
@@ -51,8 +51,7 @@ public class Name implements Model {
         reader.nextLine(); // Shift one item. First Item in file will be number of names within the file.
 
     }
-
-    @Override
+    
     public String generateValue() {
         try {
             return getRandomName();
