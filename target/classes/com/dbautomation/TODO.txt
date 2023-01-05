@@ -24,6 +24,8 @@ Changes made:
         Considering doing one large sql statement inserting multiple rows at once 
         instead of one row many times. *Next commit
         
+
+        MySQL Setup added. (Connector and internal set up).
 ------------
 * : Indicates current column working on.
 
