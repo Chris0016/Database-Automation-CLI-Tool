@@ -1,0 +1,83 @@
+Perfomance report for Model.generateValue()
+
+
+Column: Name: <OK: No internal details>
+Duration: 51276 nanoseconds
+----------
+Colum: Text:
+minLength: 1
+maxLength: 200
+Duration: 770980 nanoseconds
+----------
+Column: Number: 
+Max: 200.0
+Min: 1.0
+Is Decimal: false
+Currency: 
+Duration: 16178 nanoseconds
+----------
+Column: Email: 
+Minimum Length: 5
+Max Length: 20
+Domains: [Ljava.lang.String;@3cda1055
+Duration: 46103 nanoseconds
+----------
+Column: Date:
+Start Date: Mon Jan 01 00:00:00 EST 1990
+End Date: Thu Jan 05 17:34:15 EST 2023
+Format: java.text.SimpleDateFormat@4d9ec980
+Duration: 255857 nanoseconds
+----------
+Column: Date:
+Start Date: Mon Jan 01 00:00:00 EST 1990
+End Date: Thu Jan 05 17:34:15 EST 2023
+Format: java.text.SimpleDateFormat@5963fda0
+Duration: 56122 nanoseconds
+----------
+Column: Address Col(streetname/city/zipcode/state/country/timezone):
+Key: address
+Duration: 844245172 nanoseconds
+----------
+Column: Address Col(streetname/city/zipcode/state/country/timezone):
+Key: address.city
+Duration: 232588 nanoseconds
+----------
+Benchmark for inserting 1000 rows in databse.
+Duration(1000 rows all columns(except custom)): 154684 milliseconds (2.5 minutes);
+Run Script -> String[] myArgs = { "-table", "test_table", 
+                            "-rows", "1000",  
+                            "-cols", "name", "age", "email", "dob", "address", "city", "comments",
+                            "nameC",
+                            "numberC",
+                            "emailC",
+                            "dateC",
+                            "addressC",
+                            "cityC",
+                            "textC"
+                            };
+
+----------
+Benchmark for inserting 1000 rows in databse. * Without using the address column. 
+
+Duration(1000 rows all columns(except custom)): 156107 milliseconds
+
+Run Script:  String[] myArgs = { "-table", "test_table", 
+                            "-rows", "1000",  
+                            "-cols", "name", "age", "email", "dob",  "comments", "sec_email", "third_email",
+                            "nameC",
+                            "numberC",
+                            "emailC",
+                            "dateC",
+                            "textC",
+                            "textC",
+                            "textC" 
+                            };
+
+
+Conclusion while the address colum does take a longer time to generate values,
+it is not the main deterrent in the speed of the program. The result is most likely attributed to 
+the sql connection. 
+
+A better approach might be to just do one large sql statement inserting multiple rows at once 
+instead of one row many times. 
+----------

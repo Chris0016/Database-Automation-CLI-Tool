@@ -22,7 +22,7 @@ public class Text implements Model {
     public String generateValue() {
 
         int length = (int) (Math.random() * (maxLength - minLength + 1)) + minLength;
-        return RandomStringUtils.random(length, true, false);
+        return   "\'" + RandomStringUtils.random(length, true, false) +  "\'";
 
     }
 

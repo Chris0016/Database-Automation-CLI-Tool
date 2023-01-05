@@ -27,7 +27,7 @@ public class TimeCol implements Model{
         //System.out.println("End Date: " + endDate.toString());
         
         Date randomDate =  new Date(ThreadLocalRandom.current().nextLong(startDate.getTime(), endDate.getTime()));
-        return formatter.format(randomDate);
+        return  "\'" + formatter.format(randomDate).trim() + "\'";
 
     }    
     

@@ -1,29 +1,29 @@
 TODO:
    
-    
+    Perform one large sql statement inserting multiple rows at once 
+    instead of one row many times.
+
     *Status Reporting
 
     
 Changes made:
 
-    Generate SQL String based off given input. 
-        -> To avoid dealing with the values of the primary key, instead the user is
-            asked to provide the column names (up to 15). 
-        -> Since column names have the possibility of matching the existing commands such as
-        "name", the commands have been renamed. 
-        -> new naming scheme consists of the command appended the letter "C".
-            "C" short for colum
-    Run SQL Command
+        Performance analysis:
 
-    Test Model columns for different inputs:
-        ->Fixed Bug in email:
-            Change mechanism of Email instead of using the Name Model, used RandomStringUtils.random(length, letters, numbers) instead. 
+        After some testing performance is visibly slow(bad). 
+        2.5 minutes for 1,000 rows. See report.txt. 
 
-    Add toString() to Models
-
-    Extra comma at the end of values generated string removed. 
     
-    
+
+        Optimizations:
+            Keep values in a static array instead of files. (More memory but better performance). 
+            Observations:
+                Reading names files took about 1,241,492 nano seconds to generate the entire values string. 
+                Reading from array took about 20,000 nano seconds to generate the entire values string. 
+        
+        Considering doing one large sql statement inserting multiple rows at once 
+        instead of one row many times. *Next commit
+        
 ------------
 * : Indicates current column working on.
 

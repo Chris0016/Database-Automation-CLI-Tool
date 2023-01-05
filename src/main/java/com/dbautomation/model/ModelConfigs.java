@@ -39,6 +39,18 @@ public class ModelConfigs {
         DEFAULT_START_SECOND);  //Calendar.getInstance().set(DEFAULT_START_YEAR, DEFAULT_START_MONTH, DEFAULT_START_DAY);
         
 
+    public static final String[] names = {
+        "Christopher", 
+        "Johnny", 
+        "Jane",
+        "Dane", 
+        "Wayne",
+        "Lilo",
+        "Silo", 
+        "Milo",
+        "Bill"
+    };
+
     //private static String[] DOMAINS = {"gmail.com", "outlook.com", "yahoo.com"};
 
 }

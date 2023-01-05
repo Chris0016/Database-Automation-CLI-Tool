@@ -34,7 +34,7 @@ public class Email implements Model{
     public String generateValue() {
 
         int length = (int) (Math.random() * (maxLen - minLen+ 1)) + minLen; 
-        return RandomStringUtils.random(length, true, true) + "@" + domains[(int)(Math.random() * domains.length)];
+        return  "\'" +  RandomStringUtils.random(length, true, true) + "@" + domains[(int)(Math.random() * domains.length)] + "\'";
     }
 
     

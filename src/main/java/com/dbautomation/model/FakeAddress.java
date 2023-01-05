@@ -18,7 +18,7 @@ public class FakeAddress implements Model{
   
     }
 
-    public String generateValue(){
+    private String genVal(){
 
         //preferred:
         //faker.resolve(key);
@@ -44,6 +44,13 @@ public class FakeAddress implements Model{
 
 
     }
+
+
+    public String generateValue(){
+        return  "\'" + (genVal().replaceAll("\'", "")) +  "\'";
+    }
+  
+
 
     public String toString(){
         return "Address Col(streetname/city/zipcode/state/country/timezone):"

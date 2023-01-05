@@ -13,7 +13,7 @@ import java.util.Properties;
 
 public class DBConnection implements AutoCloseable {
 
-    final String PATH_TO_CONFIG = "dbautomationtool/resources/config.properties";
+    final String PATH_TO_CONFIG = "config.properties";
 
     private Properties prop;
 
@@ -39,6 +39,10 @@ public class DBConnection implements AutoCloseable {
             connection = DriverManager.getConnection(url, prop.getProperty("db.user"), prop.getProperty("db.password"));
             stmt = connection.createStatement();
             p = connection.prepareStatement("hello");
+
+        } catch(Exception e){
+            e.printStackTrace();
+        
         } finally {
             if (connection == null)
                 throw new SQLException("Unable to create connection with database");
