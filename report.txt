@@ -81,3 +81,22 @@ the sql connection.
 A better approach might be to just do one large sql statement inserting multiple rows at once 
 instead of one row many times. 
 ----------
+
+New Approach results:
+
+
+
+Benchmark for inserting 1000 rows in databse.
+Duration(1000 rows all columns(except custom)): 3517 milliseconds
+Run Script: String[] myArgs = { "-table", "test_table", 
+                            "-rows", numRows, 
+                            "-cols", "name", "age", "email", "dob",  "comments", "sec_email", "third_email",
+                            "nameC",
+                            "numberC",
+                            "emailC",
+                            "dateC",
+                            "textC",
+                            "textC",
+                            "textC" 
+                            };
+----------

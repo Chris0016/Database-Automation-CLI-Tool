@@ -9,20 +9,23 @@ import com.dbautomation.model.Model;
 public class DBActions {
  
     public static void insertCols( ArrayList<Object> cols, List<String> columnNames, int numRows, String table ){
-        String startSQL =  "INSERT INTO " + table + " (" + parseColumnNames(columnNames) + ")" + " VALUES (";
-        String query;
+        String query =  "INSERT INTO " + table + " (" + parseColumnNames(columnNames) + ")" + " VALUES ";
+    
 
         try (DBConnection con = new DBConnection()) {
             for (int i = 0; i < numRows; i++) {
 
-                //query =  startSQL + getVals(cols) + ");";
+                query +=  "(" + getVals(cols) + "),";
                 
-                // System.out.println("\nInserting: ");
-                // System.out.println(query);
-                // System.out.println();
             
-                con.insertSQL(startSQL + getVals(cols) + ");");
+            
+                
             }
+
+            query = query.substring(0, query.length() - 1);
+            query += ";";
+            //System.out.println("Query: \n" + query);
+            con.insertSQL(query);
             
         } catch (Exception e) {
             e.printStackTrace();

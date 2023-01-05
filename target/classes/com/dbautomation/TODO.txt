@@ -1,31 +1,19 @@
 TODO:
    
-    Perform one large sql statement inserting multiple rows at once 
-    instead of one row many times.
+   
 
     *Status Reporting
 
     
 Changes made:
 
-        Performance analysis:
+    Perform one large sql statement inserting multiple rows at once 
+    instead of one row many times.
 
-        After some testing performance is visibly slow(bad). 
-        2.5 minutes for 1,000 rows. See report.txt. 
+    -> Perfomance issue fixed. Time 3517(new) milliseconds vs 156107(old) milliseconds. 
+                                
 
-    
-
-        Optimizations:
-            Keep values in a static array instead of files. (More memory but better performance). 
-            Observations:
-                Reading names files took about 1,241,492 nano seconds to generate the entire values string. 
-                Reading from array took about 20,000 nano seconds to generate the entire values string. 
-        
-        Considering doing one large sql statement inserting multiple rows at once 
-        instead of one row many times. *Next commit
-        
-
-        MySQL Setup added. (Connector and internal set up).
+       
 ------------
 * : Indicates current column working on.
 

@@ -18,12 +18,12 @@ public class App {
     public static void main(String[] args) {
         String file = "largeUserFile.txt";
         String filePath = "src/main/ja    va/com/dbautomation/resources/" + file;
-        
+        String numRows = "1000";
         //boolean isLargeFile = file.equals("largeUserFile.txt");
         //boolean fetchInOrder = false;
 
         String[] myArgs = { "-table", "test_table", 
-                            "-rows", "1000",  
+                            "-rows", numRows, 
                             "-cols", "name", "age", "email", "dob",  "comments", "sec_email", "third_email",
                             "nameC",
                             "numberC",
@@ -40,7 +40,7 @@ public class App {
        try {
 
             FileWriter report = new FileWriter("report.txt", true);
-            report.write("\nBenchmark for inserting 1000 rows in databse.");
+            report.write("\nBenchmark for inserting " + numRows +" rows in databse.");
             report.write("\nRun Script: " + myArgs);
 
             long startTime = System.currentTimeMillis();
@@ -68,17 +68,17 @@ public class App {
     }
 
      static void generateReport(){
-        String[] myArgs = { "-table", "candy", 
-                            "-rows", "1000",  
-                            "-cols", "candy_name", "flavor",
+       
+        String[] myArgs = { "-table", "test_table", 
+                            "-rows", "100",  
+                            "-cols", "name", "age", "email", "dob",  "comments", "sec_email", "third_email",
                             "nameC",
-                            "textC",
                             "numberC",
                             "emailC",
                             "dateC",
-                            "timestampC",
-                            "addressC",
-                            "cityC"
+                            "textC",
+                            "textC",
+                            "textC" 
                             };
 
         MainCommand mc = new MainCommand();  
@@ -95,7 +95,7 @@ public class App {
                 ((Model)item).generateValue();
                 long endTime = System.nanoTime();
                 report.write("\nColum: " + ((Model)item).toString());
-                report.write("\nDuration: " + (endTime - startTime) + " nanoseconds" + "\n----------");
+                report.write("\nDuration: " + (endTime - startTime) + " milliseconds" + "\n----------");
             }
 
         report.close();
