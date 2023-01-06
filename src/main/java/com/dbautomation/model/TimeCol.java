@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
+
+
+
 public class TimeCol implements Model{
 
     private Date startDate;

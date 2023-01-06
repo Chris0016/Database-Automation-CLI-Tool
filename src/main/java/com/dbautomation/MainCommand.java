@@ -10,7 +10,6 @@ import java.util.NoSuchElementException;
 import java.util.concurrent.Callable;
 
 import com.dbautomation.model.FakeAddress;
-import com.dbautomation.model.Model;
 import com.dbautomation.model.Custom;
 import com.dbautomation.model.TimeCol;
 import com.dbautomation.model.Email;
@@ -24,9 +23,6 @@ import picocli.CommandLine.Option;
 
 @Command(name = "main", description = "DB Insertion automation", subcommandsRepeatable = true)
 public class MainCommand implements Callable<Integer> {
-
-
-     
 
     private ArrayList<Object> columns = new ArrayList<>();
 
@@ -104,18 +100,13 @@ public class MainCommand implements Callable<Integer> {
             try {
                 columns.add ( new Custom(inputDir, isLargeFile, fetchInOrder));
                 
-                //Custom cs = new Custom(inputDir, isLargeFile, fetchInOrder);
-                // System.out.println("Fetching in order: " + fetchInOrder);
-                // for(int i = 0; i < cs.getTotalItems(); i++){
-                //     System.out.println( "-> " + cs.generateValue());
-                // }
 
             } catch (FileNotFoundException e){
                 System.out.println( e.getMessage());
                 System.exit(1);
             } catch (NoSuchElementException e) {
                 System.out.println("Error in custom file: " + inputDir 
-                    + "\n Tried to retreived an element that does not exist at the end of the ile." 
+                    + "\n Tried to retreived an element that does not exist at the end of the file." 
                     + "\n To fix error: MAKE SURE NUMBER OF ITEMS PROVIDED MATCHES NUMBER OF ACTUAL ITEMS IN FILE");
                 System.exit(1);
                 }
@@ -179,17 +170,7 @@ public class MainCommand implements Callable<Integer> {
                 columns.add(new Email(minLen, maxLen));
             else
                 columns.add(new Email(domains, minLen, maxLen));
-
-            // //Testing:
-            // Email e;
-            // if (domains == null)
-            //     e = new Email(maxLen, minLen);
-            // else
-            //     e = new Email(domains, maxLen, minLen);
-
-            // for (int i = 0; i < 5; i++) {
-            //     System.out.println("Value generated: " + e.generateValue());
-            // }   
+ 
 
         } catch (Exception e){
             System.out.println( e.getMessage());
@@ -236,12 +217,6 @@ public class MainCommand implements Callable<Integer> {
                     formatter
                 )
             );
-            //columns.add(new DateCol(startDate, endDate, format));
-                  
-            //DateCol dc = new DateCol(formatter.parse(startDate), formatter.parse(endDate));
-            //DateCol dc = (DateCol)columns.get(columns.size() - 1);
-            //System.out.println( dc.generateValue());
-            
 
         } catch (Exception e) {
             
@@ -294,12 +269,6 @@ public class MainCommand implements Callable<Integer> {
                     formatter
                 )
             );
-            //columns.add(new DateCol(startTime, endTime, format));
-                  
-            //DateCol dc = new DateCol(formatter.parse(startTime), formatter.parse(endDate));
-            //TimeCol dc = (TimeCol)columns.get(columns.size() - 1);
-            //System.out.println( dc.generateValue());
-            
 
         } catch (Exception e) {
             

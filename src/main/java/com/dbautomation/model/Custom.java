@@ -6,6 +6,16 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 
+
+/*
+ * 
+ * Users can have column values from their select files. 
+ * 
+ * This class is useful for column values that aren't represented by the models. For instance, a set of names, numbers, or
+ * just company private informaton. 
+ * 
+ * 
+ */
 public class Custom implements Model{ 
 
     private File inputFile;
@@ -26,8 +36,6 @@ public class Custom implements Model{
             this.fetchInOrder = fetchInOrder;
 
             findNumberofItems();
-            System.out.println("Num Items: " + numberOfItems);
-            System.out.println("Is large: " + isLargeFile);
 
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException(
@@ -89,9 +97,7 @@ public class Custom implements Model{
 
 
     public String generateValue()   {
-        // Handle exception in caller for isLargeFile where number of items given does
-        // not match the actual number of items in file(numItemsGiven > numItems).
-        // Therefore a NoSuchElementException occurrs while iterating through the file.
+    
         try{
             resetScanner();
             String itemToGive;
@@ -105,7 +111,7 @@ public class Custom implements Model{
                 itemToGive = reader.nextLine();
                 reader.close();
                 currentItemIndex++;
-                return itemToGive;
+                return "\'" + itemToGive + "\'";
             }
 
 
@@ -122,7 +128,7 @@ public class Custom implements Model{
             itemToGive = reader.nextLine();
             reader.close();
 
-            return itemToGive;
+            return "\'" + itemToGive + "\'";
 
         } catch (NoSuchElementException e){
             System.out.println("Error reached the end of file \'" + inputFile + "\' while parsing.\n Error likely occured because the given number of items does not match the actual number. ");

@@ -8,7 +8,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Properties;
 
 public class DBConnection implements AutoCloseable {
@@ -28,9 +27,9 @@ public class DBConnection implements AutoCloseable {
 
             prop.load(input);
 
-            System.out.println(
-                    prop.getProperty("db.host")
-                            + "\n" + prop.getProperty("db.port"));
+            // System.out.println(
+            //         prop.getProperty("db.host")
+            //                 + "\n" + prop.getProperty("db.port"));
 
             String url = "jdbc:mysql://" + prop.getProperty("db.host") + ":" + prop.getProperty("db.port") + "/"
                     + prop.getProperty("db.schema") + "?useTimezone=true&serverTimezone=UTC";

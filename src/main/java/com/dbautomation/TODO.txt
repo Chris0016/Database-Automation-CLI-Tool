@@ -1,17 +1,12 @@
 TODO:
    
-   
-
-    *Status Reporting
-
     
 Changes made:
 
-    Perform one large sql statement inserting multiple rows at once 
-    instead of one row many times.
+    Documentation and  Polishing. 
 
-    -> Perfomance issue fixed. Time 3517(new) milliseconds vs 156107(old) milliseconds. 
-                                
+    Removal of unused imports, classes, and unecessary comments. 
+                      
 
        
 ------------
@@ -68,7 +63,7 @@ Colums:
     Timezone:
         -lcl Locale default is en-US
     
-    *Generate SQL String based off given input. 
+    Generate SQL String based off given input. 
     Run SQL Command
     Status Reporting
         
@@ -77,38 +72,6 @@ Colums:
     
 Notes:
      
-
-    For BB Connectin follow example:
-
-    public void addServiceToDB(Service s, Account acct) throws SQLException {
-
-        System.out.println("...adding to db");
-
-        // System.out.println("Current max count in services: " + currentMax); //DEBUG
-
-        String query = "INSERT INTO services VALUES ( "
-                + s.getServiceId()
-                + ", " + acct.getUserId()
-                + ", \'" + s.getServiceName() + "\'"
-                + ", \'" + s.getServiceUsername() + "\'"
-                + ", \'" + s.getServicePassword() + "\'"
-                + ", \'" + s.getDateCreated() + "\'"
-                + ", \'" + s.getLastPasswordChange() + "\'"
-                + " );";
-
-        PreparedStatement p = connection.prepareStatement(query);
-        p.executeUpdate(query);
-
-    }
-
-
-    Account for primary key -> Make requirement that database must be set to autofill keys
-    sql statement might look like -. INsert (?,?,?,?) values (*nokey,* value1, value2,... )
-
-
-    User input files must follow format. 
-    comma separated values with the first value being the number of items in the file.
-
     Give examples of usage in documentation: 
     Single Day -> Just use the custom col like -> custom -src dateFile. 
 
