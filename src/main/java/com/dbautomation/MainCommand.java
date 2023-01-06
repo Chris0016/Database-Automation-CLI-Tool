@@ -203,7 +203,7 @@ public class MainCommand implements Callable<Integer> {
     public void addDate(
         @Option(names = {"-from", "--from"}, arity = "1") String startDate,
         @Option(names = {"-to", "--to"}, arity = "1") String endDate,
-        @Option(names = {"-format", "--format"}, arity = "1", defaultValue = " YYYY-MM-dd hh:mm:ss" ) String format
+        @Option(names = {"-format", "--format"}, arity = "1", defaultValue = "YYYY-MM-dd hh:mm:ss" ) String format
     ){
        
         try {

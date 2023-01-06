@@ -9,23 +9,23 @@ public class App {
     public static void main(String[] args) {
 
         //Example
-        String table = "test_table";
-        String numRows = "100";
-        String[] myArgs = { "-table", table, 
-                            "-rows", numRows, 
-                            "-cols", "name", "age", "email", "dob",  "comments", "sec_email", "third_email",
-                            "nameC",
-                            "numberC",
-                            "emailC",
-                            "dateC",
-                            "customC", "-src", "src/main/java/com/dbautomation/resources/largeUserFile.txt", "-isLarge",
-                            "textC",
-                            "textC" 
-                            };
+        // String table = "test_table";
+        // String numRows = "100";
+        // String[] myArgs = { "-table", table, 
+        //                     "-rows", numRows, 
+        //                     "-cols", "name", "age", "email", "dob",  "comments", "sec_email", "third_email",
+        //                     "nameC",
+        //                     "numberC",
+        //                     "emailC",
+        //                     "dateC",
+        //                     "customC", "-src", "src/main/java/com/dbautomation/resources/largeUserFile.txt", "-isLarge",
+        //                     "textC",
+        //                     "textC" 
+        //                     };
         //Example
 
         MainCommand mc = new MainCommand();  
-        int exitCode = new CommandLine(mc).execute(myArgs);
+        int exitCode = new CommandLine(mc).execute(args);
 
         try {
 
