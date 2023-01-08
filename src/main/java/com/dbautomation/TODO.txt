@@ -4,10 +4,7 @@ TODO:
 Changes made:
 
     Documentation and  Polishing. 
-
-    Removal of unused imports, classes, and unecessary comments. 
-                      
-
+    Version 1.0.0
        
 ------------
 * : Indicates current column working on.
@@ -72,8 +69,6 @@ Colums:
     
 Notes:
      
-    Give examples of usage in documentation: 
-    Single Day -> Just use the custom col like -> custom -src dateFile. 
 
 
 
